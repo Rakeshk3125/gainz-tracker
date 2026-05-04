@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "GAINZ Tracker",
+    "slug": "gainz-tracker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": false,
+    "extra": {
+      "eas": {
+        "projectId": "62fd1885-2422-4f08-a24f-3249048bbb1c"
+      }
+    },
+    "owner": "rakeshk3125"
+  }
+}

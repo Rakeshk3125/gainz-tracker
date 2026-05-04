@@ -1,0 +1,176 @@
+═══════════════════════════════════════════════════
+  GAINZ TRACKER — PERMANENT PHONE INSTALL GUIDE
+  No laptop needed after this. Ever.
+═══════════════════════════════════════════════════
+
+WHAT YOU'LL HAVE AT THE END:
+✓ App icon on your iPhone home screen
+✓ Opens instantly like any other app
+✓ Works offline — no WiFi, no laptop, no Expo Go
+✓ Data saved permanently on your phone
+✓ Takes about 20 minutes total
+
+═══════════════════════════════════════════════════
+STEP 1 — Create a free Expo account
+═══════════════════════════════════════════════════
+
+1. Go to: expo.dev
+2. Click "Sign Up" — use your email
+3. Verify your email
+4. Remember your username — you'll need it
+
+═══════════════════════════════════════════════════
+STEP 2 — Install tools on your laptop (one time only)
+═══════════════════════════════════════════════════
+
+Open Terminal and run these one at a time:
+
+  npm install -g eas-cli
+
+Wait for it to finish (~1 minute).
+
+═══════════════════════════════════════════════════
+STEP 3 — Navigate to your app folder
+═══════════════════════════════════════════════════
+
+  cd ~/Downloads/gainz-tracker
+
+(adjust path if you put it somewhere else)
+
+═══════════════════════════════════════════════════
+STEP 4 — Install dependencies
+═══════════════════════════════════════════════════
+
+  npm install
+
+Wait ~2 minutes.
+
+═══════════════════════════════════════════════════
+STEP 5 — Log in to Expo
+═══════════════════════════════════════════════════
+
+  eas login
+
+Enter your expo.dev email and password when asked.
+
+═══════════════════════════════════════════════════
+STEP 6 — Link your app to Expo
+═══════════════════════════════════════════════════
+
+  eas init
+
+It will ask: "Would you like to create a new EAS project?"
+→ Press Y and Enter
+
+It gives you a projectId — it automatically saves it to app.json.
+You're now linked to Expo's cloud build servers.
+
+═══════════════════════════════════════════════════
+STEP 7 — Build the app (this is the magic step)
+═══════════════════════════════════════════════════
+
+  eas build --platform ios --profile preview
+
+What happens:
+• Your code uploads to Expo's cloud servers
+• Expo compiles it into a real iPhone app (.ipa file)
+• Takes about 10-15 minutes
+• You don't need to do anything — just wait
+
+You'll see a URL like:
+  https://expo.dev/accounts/YOU/builds/abc123
+
+═══════════════════════════════════════════════════
+STEP 8 — Install on your iPhone
+═══════════════════════════════════════════════════
+
+When the build finishes:
+
+Option A (easiest):
+1. Expo sends you an email with a link
+2. Open that link ON YOUR IPHONE (not laptop)
+3. Tap "Install"
+4. Go to Settings → General → VPN & Device Management
+5. Find "Expo" → tap "Trust Expo"
+6. Open the app from your home screen ✓
+
+Option B:
+1. Open expo.dev on your iPhone
+2. Log in → go to your build
+3. Tap "Install" → follow same steps above
+
+═══════════════════════════════════════════════════
+AFTER INSTALL — YOU'RE DONE
+═══════════════════════════════════════════════════
+
+✓ App icon lives on your home screen
+✓ Tap it — opens in 2 seconds
+✓ Close your laptop — app still works
+✓ Turn off WiFi — app still works
+✓ Your PIN, your data, everything saved
+
+You NEVER need to run npx expo start again.
+
+═══════════════════════════════════════════════════
+EVERY TIME THE APP GETS UPDATED
+═══════════════════════════════════════════════════
+
+When I update your app and give you a new zip:
+
+1. Unzip the new file
+2. Open Terminal → cd into the new folder
+3. Run: npm install
+4. Run: eas build --platform ios --profile preview
+5. Wait 10-15 min → open install link on iPhone
+6. Tap Install → done. App updated.
+
+Your data is NOT deleted on updates — it stays on your phone.
+
+═══════════════════════════════════════════════════
+ANDROID? (if you have Android phone)
+═══════════════════════════════════════════════════
+
+Same process but run:
+  eas build --platform android --profile preview
+
+You get an APK file. Download it on your phone.
+Go to Settings → Install unknown apps → Allow.
+Install it. Done.
+
+═══════════════════════════════════════════════════
+IF SOMETHING GOES WRONG
+═══════════════════════════════════════════════════
+
+Copy the exact error message and send it to Claude.
+Most common issues:
+
+"Not logged in"
+→ Run: eas login
+
+"Project not found"  
+→ Run: eas init
+
+"Build failed"
+→ Share the build URL from expo.dev — logs show exact error
+
+"Cannot install on iPhone"
+→ Make sure you trusted the certificate:
+   Settings → General → VPN & Device Management → Trust
+
+═══════════════════════════════════════════════════
+COMMANDS SUMMARY (cheat sheet)
+═══════════════════════════════════════════════════
+
+First time setup:
+  npm install -g eas-cli
+  npm install
+  eas login
+  eas init
+  eas build --platform ios --profile preview
+
+Every update after that:
+  npm install
+  eas build --platform ios --profile preview
+
+That's it. Two commands.
+═══════════════════════════════════════════════════
