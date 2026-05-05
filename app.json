@@ -7,20 +7,28 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "newArchEnabled": false,
-    "extra": {
-      "eas": {
-        "projectId": "62fd1885-2422-4f08-a24f-3249048bbb1c"
-      }
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0a0a0f"
     },
-    "owner": "rakeshk3125",
     "ios": {
-      "bundleIdentifier": "com.rakeshk3125.gainztracker",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
-      }
+      "supportsTablet": false,
+      "bundleIdentifier": "com.gainztracker.app",
+      "buildNumber": "1"
     },
     "android": {
-      "package": "com.rakeshk3125.gainztracker"
-    }
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0a0a0f"
+      },
+      "package": "com.rakeshk3125.gainztracker",
+      "versionCode": 1,
+      "permissions": []
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {}
   }
 }
