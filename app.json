@@ -12,6 +12,15 @@
         "projectId": "62fd1885-2422-4f08-a24f-3249048bbb1c"
       }
     },
-    "owner": "rakeshk3125"
+    "owner": "rakeshk3125",
+    "ios": {
+      "bundleIdentifier": "com.rakeshk3125.gainztracker",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.rakeshk3125.gainztracker"
+    }
   }
 }
