@@ -235,36 +235,216 @@ const HCATS=[...new Set(HABITS.map(h=>h.cat))];
 const HTOTAL=HABITS.length;
 
 // ═══ CURRICULUM ═══
-const CURRICULUM=[
-  {id:1,week:1,phase:'SFMC Intro',topic:'What is Salesforce Marketing Cloud?',tech:'SFMC',concepts:['What is SFMC and who uses it?','How SFMC fits within the Salesforce ecosystem','Difference between SFMC and Salesforce CRM','Key use cases: email, SMS, social, advertising, journeys','What a Business Unit is in SFMC'],practice:'Watch the SFMC overview on Trailhead. Write 3 sentences explaining SFMC to someone who has never heard of it.',resource:'Trailhead: Marketing Cloud Basics → Get Started with Marketing Cloud',interviews:['What is SFMC and how does it differ from Sales Cloud?','Name the main studios in SFMC and what each does.','Who are the typical users of SFMC?']},
-  {id:2,week:1,phase:'SFMC Intro',topic:'Navigating the SFMC Interface',tech:'SFMC',concepts:['Logging in and the SFMC home screen layout','The App Switcher: jumping between studios','Setup menu: where admin settings live','Content Builder: the central hub for email content','Finding your account settings and user profile'],practice:'Log into a SFMC trial org. Navigate to each studio from the App Switcher and identify one key feature in each.',resource:'Trailhead: Marketing Cloud Basics → Navigate Marketing Cloud',interviews:['Where would you go in SFMC to create a new email?','What is the App Switcher used for?','How do you access Setup in SFMC?']},
-  {id:3,week:2,phase:'SFMC Intro',topic:'SFMC Data Model: Subscribers, Lists & Data Extensions',tech:'SFMC',concepts:['What is a Subscriber in SFMC','Lists vs Data Extensions: key differences','What is a Publication List and why it matters','Subscriber statuses: Active, Unsubscribed, Bounced, Held','How data extensions store custom fields and rows'],practice:'Create a simple data extension with 4 fields: FirstName, LastName, Email, Country. Add 3 test records.',resource:'Trailhead: Email Marketing with Marketing Cloud → Manage Subscribers',interviews:['What is the difference between a List and a Data Extension?','What subscriber statuses exist?','Why would you use a data extension instead of a list?']},
-  {id:4,week:2,phase:'SFMC Intro',topic:'Email Studio: Building & Sending Your First Email',tech:'SFMC',concepts:['Content Builder: drag-and-drop email editor','Email blocks: text, image, button, HTML','CAN-SPAM compliance: required elements','Creating a send definition: who, what, when','Sending a test email before the real send'],practice:'Build a simple welcome email: logo, greeting, CTA button, unsubscribe link. Send a test to your own email.',resource:'Trailhead: Email Marketing with Marketing Cloud → Create and Send Email',interviews:['What are the CAN-SPAM required elements?','Walk me through sending an email in SFMC.','What is a send definition?']},
-  {id:5,week:3,phase:'SFMC Intro',topic:'Journey Builder & Automation Studio',tech:'SFMC',concepts:['What is Journey Builder and what problems does it solve?','What is Automation Studio and how does it differ?','When to use Journey Builder vs Automation Studio','Key Journey Builder components: entry source, activities, wait times, splits','A simple automation: scheduled import → send email'],practice:'In Journey Builder, build a 2-step journey: entry event → 1 day wait → email send. Activate in test mode.',resource:'Trailhead: Marketing Cloud Journey Builder → Build a Basic Journey',interviews:['What is the difference between Journey Builder and Automation Studio?','What is an entry event in Journey Builder?','When would you use Automation Studio?']},
-  {id:6,week:4,phase:'SF Foundation',topic:'Salesforce Platform Overview',tech:'Salesforce Core',concepts:['What is Salesforce? CRM vs Platform vs Cloud','The main clouds: Sales Cloud, Service Cloud, Experience Cloud','What is a Salesforce Org and Trailhead Playground?','Lightning Experience vs Classic','Salesforce licensing model'],practice:'Log into your Trailhead Playground. Explore the App Launcher and identify 5 different apps.',resource:'Trailhead: Salesforce Platform Basics → Get Started',interviews:['What is Salesforce and what problem does it solve?','Difference between Sales Cloud and Service Cloud?','What is Lightning Experience?']},
-  {id:7,week:4,phase:'SF Foundation',topic:'Lightning Experience Navigation',tech:'Salesforce Core',concepts:['The Lightning navigation bar and App Launcher','Global search across all records','The Home page: activities, tasks, dashboards','List views: creating, saving, sharing','Personalising your layout'],practice:'Pin 3 tabs to the navigation bar, create a custom Account list view, and add a task to your Home page.',resource:'Trailhead: Lightning Experience Basics',interviews:['How does global search work?','What is a list view and how do you create one?','How would you help a new sales rep customise their layout?']},
-  {id:8,week:5,phase:'SF Foundation',topic:'Core Objects: Leads & Contacts',tech:'Salesforce Core',concepts:['What is a Lead? When and why leads are used','What is a Contact? How it differs from a Lead','Lead conversion: Lead → Contact + Account + Opportunity','Key Lead fields: Status, Source, Rating, Owner','Key Contact fields: Account Name, Title, Email, Phone'],practice:'Create 3 Leads with different statuses. Convert one into a Contact and Account.',resource:'Trailhead: Sales Cloud for Sales Reps → Manage Leads and Contacts',interviews:['Difference between a Lead and a Contact?','Walk me through Lead conversion.','Why use Leads instead of creating Contacts directly?']},
-  {id:9,week:5,phase:'SF Foundation',topic:'Core Objects: Accounts & Opportunities',tech:'Salesforce Core',concepts:['What is an Account? B2B vs B2C','Account hierarchy: parent-child relationships','What is an Opportunity? The sales pipeline','Opportunity stages: Prospecting to Closed Won','Key fields: Amount, Close Date, Stage, Probability'],practice:'Create an Account for a fictional company, then 3 Opportunities at different stages.',resource:'Trailhead: Sales Cloud for Sales Reps → Track Opportunities',interviews:['Difference between an Account and Opportunity?','What are opportunity stages?','How does probability relate to stage?']},
-  {id:10,week:6,phase:'SF Foundation',topic:'Activities: Tasks, Events & Logging Calls',tech:'Salesforce Core',concepts:['Tasks vs Events vs Log a Call','Creating a Task: subject, due date, priority','Logging a call: capturing phone details','Creating an Event: scheduling meetings','Activity timeline: viewing all history'],practice:'On a Contact: log a call, create a follow-up task due in 3 days, schedule a meeting for next week.',resource:'Trailhead: Sales Cloud for Sales Reps → Log Customer Interactions',interviews:['Difference between a Task and an Event?','How do you log a call?','Why is capturing activities important?']},
-  {id:11,week:7,phase:'SF Admin',topic:'Pipeline Management & Forecasting',tech:'Sales Cloud',concepts:['Sales pipeline and how Salesforce visualises it','Kanban view for opportunities','Collaborative Forecasting: predicting revenue','Forecast categories: Pipeline, Best Case, Commit, Closed','Setting up the Forecast tab'],practice:'Switch Opportunity list to Kanban mode. Move 3 opportunities across stages. Navigate to Forecasts tab.',resource:'Trailhead: Sales Cloud for Sales Reps → Manage Forecasts',interviews:['What is collaborative forecasting?','Difference between Commit and Best Case?','How does Kanban differ from a list view?']},
-  {id:12,week:8,phase:'SF Admin',topic:'User Management: Users, Profiles & Roles',tech:'Salesforce Admin',concepts:['What is a User record and key fields','What is a Profile? Permissions it controls','Standard profiles: System Administrator, Standard User, Read Only','What is a Role? The role hierarchy','Creating a new user'],practice:'Create a new test user with Standard User profile. Assign them to a role.',resource:'Trailhead: Admin Beginner → Manage Users',interviews:['Difference between a Profile and a Role?','What does a Profile control?','How would you create a new user?']},
-  {id:13,week:9,phase:'SF Admin',topic:'Salesforce Security Model',tech:'Salesforce Admin',concepts:['Organisation-Wide Defaults (OWD)','OWD options: Private, Public Read Only, Public Read/Write','Role Hierarchy: how higher roles inherit access','Sharing Rules: extending access beyond OWD','Manual sharing: sharing individual records'],practice:'In Setup, review OWD settings for Accounts, Contacts, Opportunities, and Leads.',resource:'Trailhead: Admin Beginner → Control Access to Records',interviews:['What are Organisation-Wide Defaults?','How does the role hierarchy open record access?','What is a Sharing Rule?']},
-  {id:14,week:10,phase:'SF Admin',topic:'Custom Objects, Fields & Relationships',tech:'Salesforce Admin',concepts:['What is a custom object? When to create one','Field types: Text, Number, Date, Picklist, Checkbox, Currency, Lookup','Creating a custom object in Setup','Lookup vs Master-Detail relationship','Roll-up Summary fields'],practice:'Create a custom object "Training Course" with 5 fields: Course Name, Start Date, Duration, Category, Active.',resource:'Trailhead: Admin Beginner → Create a Custom Object',interviews:['Difference between Lookup and Master-Detail?','What is a roll-up summary field?','When would you create a custom object?']},
-  {id:15,week:11,phase:'SF Admin',topic:'Page Layouts, Record Types & Compact Layouts',tech:'Salesforce Admin',concepts:['What is a Page Layout?','Adding/removing fields, sections, related lists','What is a Record Type?','Assigning page layouts to profiles','Compact Layouts: fields in highlights and mobile'],practice:'Create a custom page layout for Training Course. Create 2 record types: Internal and External Training.',resource:'Trailhead: Admin Beginner → Customise Record Pages',interviews:['Difference between Page Layout and Record Type?','How do you assign layouts to different profiles?','What is a compact layout?']},
-  {id:16,week:12,phase:'SF Admin',topic:'Salesforce Flow: Automation Without Code',tech:'Salesforce Flow',concepts:['What is Salesforce Flow? Why it replaced Process Builder','Flow types: Screen, Record-Triggered, Scheduled, Autolaunched','Key elements: Start, Assignment, Decision, Loop, Get/Update Records','The Flow Builder interface','Your first record-triggered flow'],practice:'Build a Record-Triggered Flow on Training Course: when created, set Active = TRUE automatically.',resource:'Trailhead: Flow Basics → Build a Simple Flow',interviews:['What is a Salesforce Flow and what types exist?','Difference between Record-Triggered and Screen Flow?','Why did Salesforce retire Workflow Rules?']},
-  {id:17,week:13,phase:'SF Admin',topic:'Screen Flows: Guided User Experiences',tech:'Salesforce Flow',concepts:['What is a Screen Flow and when to use it','Screen Flow components: Text Input, Picklist, Display Text','Collecting user input and using it in logic','Adding a Screen Flow to a record page','Validation in Screen Flows'],practice:'Build a Screen Flow that guides creating a new Training Course. Add it to the Training Course home page.',resource:'Trailhead: Flow Basics → Build a Screen Flow',interviews:['What is a Screen Flow?','Where can you embed a Screen Flow?','How do you validate user input?']},
-  {id:18,week:14,phase:'Reporting',topic:'Reports: Building Your First Salesforce Report',tech:'Salesforce Reporting',concepts:['Report types: Tabular, Summary, Matrix, Joined','The Report Builder: rows, columns, filters, groupings','Creating a Tabular report','Adding groupings: Summary report by Stage','Filtering: this quarter\'s records'],practice:'Build 2 reports: (1) Tabular list of all open Opportunities, (2) Summary grouped by Stage with total Amount.',resource:'Trailhead: Reports & Dashboards for Lightning → Build a Report',interviews:['Difference between Tabular and Summary report?','How do you add a filter?','What is a grouping?']},
-  {id:19,week:15,phase:'Reporting',topic:'Dashboards: Visualising Data',tech:'Salesforce Reporting',concepts:['What is a Dashboard?','Component types: Chart, Table, Gauge, Metric','Creating a dashboard from reports','Dashboard filters','The running user concept'],practice:'Create a Sales dashboard: Pipeline by Stage (bar), Closed Won (metric), Top 5 Opportunities (table), Win Rate (gauge).',resource:'Trailhead: Reports & Dashboards for Lightning → Create a Dashboard',interviews:['Difference between a report and dashboard?','What is the running user?','What are dashboard filters?']},
-  {id:20,week:16,phase:'Service Cloud',topic:'Service Cloud: Cases & the Service Console',tech:'Service Cloud',concepts:['What is Service Cloud?','The Case object: fields, status, priority, origin','Case lifecycle: New → In Progress → Escalated → Closed','The Service Console: multi-tab interface','Logging a case: web, email, phone, manual'],practice:'Enable Service Cloud. Create 5 test Cases with different statuses and origins. Open the Service Console.',resource:'Trailhead: Service Cloud for Agents → Get Started with Cases',interviews:['What is a Case in Salesforce?','What is the Service Console?','What are typical case lifecycle stages?']},
-  {id:21,week:17,phase:'Service Cloud',topic:'Entitlements, SLAs & Omni-Channel',tech:'Service Cloud',concepts:['What is an Entitlement?','Milestones: time-based checkpoints within a case','SLA management using entitlements','What is Omni-Channel?','Presence statuses: Available, Busy'],practice:'Create an Entitlement Process with 2 milestones: First Response (2hrs) and Case Resolution (24hrs).',resource:'Trailhead: Service Cloud for Admins → Set Up Entitlements',interviews:['What is an Entitlement?','What is a Milestone?','What is Omni-Channel?']},
-  {id:22,week:18,phase:'Data Management',topic:'Data Import Wizard & Data Loader',tech:'Data Management',concepts:['Data Import Wizard vs Data Loader','Preparing a CSV for import','Import Wizard walkthrough for Contacts','Data Loader for larger imports','Reviewing import results and error logs'],practice:'Prepare a CSV with 10 Contact records. Import using Data Import Wizard. Review the success/failure report.',resource:'Trailhead: Data Management → Import Data',interviews:['Difference between Import Wizard and Data Loader?','What file format does Salesforce use?','How do you handle import errors?']},
-  {id:23,week:19,phase:'Data Management',topic:'Duplicate Management & Data Quality',tech:'Data Management',concepts:['Why data quality matters','Duplicate Rules: alerting or blocking duplicates','Matching Rules: defining a match','Merge Records: combining duplicates','Validation Rules: enforcing data entry standards'],practice:'Enable Duplicate Rules for Contacts. Try creating a duplicate. Merge 2 test Contact records.',resource:'Trailhead: Data Quality → Manage Duplicate Records',interviews:['What is a Duplicate Rule?','Difference between Matching Rule and Duplicate Rule?','How do you merge duplicate records?']},
-  {id:24,week:20,phase:'Data Management',topic:'Integration Concepts: APIs & AppExchange',tech:'Integration',concepts:['What is an API? REST vs SOAP','Salesforce API types: REST, Bulk, Streaming, Metadata','AppExchange: pre-built integrations','What is MuleSoft?','Integration patterns: real-time, batch, event-driven'],practice:'Browse AppExchange and find 3 integration apps. For each write what it connects to and what problem it solves.',resource:'Trailhead: Integration Basics → Get Started with Salesforce Integration',interviews:['What is the Salesforce REST API?','Difference between MuleSoft and AppExchange integration?','Real-time vs batch integration pattern?']},
-  {id:25,week:22,phase:'Advanced SF',topic:'Advanced Flows: Scheduled Flows & Complex Logic',tech:'Salesforce Flow',concepts:['Scheduled Flows: running automation at a set time','Get Records: querying multiple records','Loop element with Collection variable','Fault paths: handling errors gracefully','Subflows: calling one flow from another'],practice:'Build a Scheduled Flow that runs every Monday at 8am and creates a Task for every Opportunity closing in 7 days.',resource:'Trailhead: Flow Builder → Build a Scheduled Flow',interviews:['What is a Scheduled Flow?','How do you use a Loop in a Flow?','Difference between record-triggered and scheduled flow?']},
-  {id:26,week:24,phase:'Advanced SF',topic:'Optimisation & Salesforce Best Practices',tech:'Salesforce Admin',concepts:['Iterating on Salesforce: test, measure, improve','Using Reports to measure impact','Identifying manual processes to automate','User feedback: finding friction points','Change management: communicating changes'],practice:'Interview a fictional sales rep. Ask their 3 biggest Salesforce pain points. Propose a config change for each.',resource:'Trailhead: Admin Best Practices → Manage Change in Your Org',interviews:['How do you decide what to automate?','How do you measure a config change impact?','What is change management in Salesforce?']},
-  {id:27,week:25,phase:'Capstone',topic:'Capstone: End-to-End Salesforce Solution',tech:'Salesforce Core',concepts:['Review: SFMC, CRM, Admin, Flows, Reporting, Service Cloud, Data','Capstone brief: design a solution for a fictional company','Requirements gathering: objects, processes, users, reporting','Sketch: data model, user roles, automation, dashboards','Document the solution before building'],practice:'Design a Salesforce solution for a 50-person software company. Write a 1-page design doc: data model, automations, user roles, 3 KPI reports.',resource:'Salesforce Admin certification study guide on Trailhead',interviews:['How would you design a Salesforce solution from scratch?','What questions would you ask a client?','How do you prioritise what to build first?']},
+const TRAILS=[
+  {
+    id:'trail1', name:'Salesforce Marketing Cloud Basics', icon:'📧', color:'#f59e0b',
+    points:1800, badgeEmoji:'🥉', badgeName:'SFMC Explorer',
+    description:'Get started with Salesforce Marketing Cloud — learn what it is, how to navigate it, and how to send your first email campaign.',
+    modules:[
+      {
+        id:'m1', title:'Get Started with Marketing Cloud', units:3, points:300,
+        units_list:[
+          {id:'u1', title:'What Is Salesforce Marketing Cloud?', type:'module', duration:'10 min', points:100,
+           overview:'Salesforce Marketing Cloud (SFMC) is a digital marketing platform that helps companies send the right message to the right person at the right time across email, SMS, social, and advertising channels.',
+           concepts:['SFMC is Salesforce's marketing automation platform used by B2C companies','Key studios: Email Studio, Mobile Studio, Social Studio, Advertising Studio, Journey Builder, Content Builder, Automation Studio','A Business Unit (BU) is a sub-account within SFMC used to separate brands or regions','SFMC differs from Sales Cloud: SFMC = marketing to customers, Sales Cloud = managing sales pipeline','Typical users: Email Marketers, Marketing Ops, Developers, Admins'],
+           practice:'Log in to a Trailhead Playground with SFMC enabled. Explore the App Switcher and identify each studio. Write a 3-sentence summary of what SFMC does.',
+           quiz:[{q:'What is SFMC primarily used for?',a:'Digital marketing automation — sending messages across email, SMS, social, and advertising channels.',opts:['CRM and sales pipeline management','Digital marketing automation','Financial reporting','Customer service case management'],correct:0},{q:'What is a Business Unit in SFMC?',a:'A sub-account within SFMC used to separate brands, regions, or departments.',opts:['A team of marketers','A sub-account within SFMC','A type of email template','An automation workflow'],correct:1}]},
+          {id:'u2', title:'Navigate Marketing Cloud', type:'module', duration:'10 min', points:100,
+           overview:'Learn how to move around the SFMC interface — the App Switcher, Setup menu, and Content Builder are your key navigation points.',
+           concepts:['The App Switcher (grid icon top-left) lets you jump between studios','Setup (cog icon) is where admin settings, user management, and configuration live','Content Builder is the central hub for all email and content assets','The navigation bar shows your current studio and recent items','Your user profile and business unit switcher are in the top-right corner'],
+           practice:'Navigate to each of the following in your SFMC org: Email Studio, Content Builder, Automation Studio, Journey Builder. Screenshot or note one key feature in each.',
+           quiz:[{q:'Where do you go to manage users in SFMC?',a:'Setup — accessed via the cog icon in the top navigation.',opts:['Content Builder','Journey Builder','Setup (cog icon)','Email Studio'],correct:2},{q:'What is Content Builder used for?',a:'Storing and managing all email content, images, templates, and assets.',opts:['Routing cases to agents','Managing subscriber lists only','Storing and managing all email content and assets','Setting up automations'],correct:3}]},
+          {id:'u3', title:'SFMC Data Model — Subscribers & Data Extensions', type:'module', duration:'15 min', points:100,
+           overview:'Understanding how SFMC stores contact data is critical. Learn the difference between subscribers, lists, and data extensions.',
+           concepts:['A Subscriber is anyone who has opted in to receive communications — identified by a Subscriber Key','Lists are simple flat files of subscribers — easy but limited in structure','Data Extensions (DEs) are database tables with custom fields — flexible and powerful','Publication Lists track what a subscriber is opted into — required for compliance','Subscriber statuses: Active, Unsubscribed, Bounced, Held — each affects deliverability'],
+           practice:'In SFMC, create a new Data Extension called "Practice_Contacts" with fields: FirstName (Text), LastName (Text), Email (EmailAddress), Country (Text). Add 3 test records manually.',
+           quiz:[{q:'What is a Data Extension?',a:'A database table in SFMC with custom fields used to store subscriber and campaign data.',opts:['A type of email template','A database table with custom fields','A subscriber list limited to 500 contacts','A journey entry source'],correct:1},{q:'What subscriber status means emails are no longer delivered?',a:'Unsubscribed — the contact has opted out and will not receive further emails.',opts:['Active','Pending','Unsubscribed','Engaged'],correct:2}]},
+        ]
+      },
+      {
+        id:'m2', title:'Build and Send Your First Email', units:2, points:300,
+        units_list:[
+          {id:'u4', title:'Build Emails in Content Builder', type:'module', duration:'20 min', points:150,
+           overview:'Content Builder is your drag-and-drop email editor. Learn how to create professional emails using blocks, templates, and dynamic content.',
+           concepts:['Content Builder uses a block-based drag-and-drop editor — text, image, button, HTML, and layout blocks','Templates let you save reusable email designs — brand consistency at scale','CAN-SPAM requirements: physical address, unsubscribe link, sender name — legally required in every commercial email','GDPR adds: explicit consent, right to be forgotten, data transparency — critical for EU audiences','Pre-header text appears in the inbox preview next to the subject line — write it intentionally'],
+           practice:'Build a welcome email in Content Builder: (1) Add your company logo as an image block, (2) Write a greeting paragraph, (3) Add a CTA button linking to a URL, (4) Add an unsubscribe link in the footer. Send a test email to yourself.',
+           quiz:[{q:'What is required by CAN-SPAM in every commercial email?',a:'A physical mailing address and a working unsubscribe mechanism.',opts:['A discount code','A physical address and unsubscribe link','An image and a button','A subject line with the word "newsletter"'],correct:1},{q:'What is pre-header text?',a:'Preview text shown in the inbox next to the subject line — summarises the email before it is opened.',opts:['The first paragraph of the email body','Text shown before the email header image','Preview text shown in the inbox next to the subject line','The email footer disclaimer'],correct:2}]},
+          {id:'u5', title:'Send and Track Email Performance', type:'module', duration:'15 min', points:150,
+           overview:'Sending an email in SFMC involves a send definition — defining who receives it, when, and from which sending domain. Learn how to track results.',
+           concepts:['A Send Definition links your email to an audience (data extension or list), a from address, and a send time','Always send a test email before going live — use Test Send to specific addresses','Key email metrics: Open Rate (% who opened), Click Rate (% who clicked a link), Bounce Rate (% undeliverable), Unsubscribe Rate','Hard bounce = permanent delivery failure (invalid address) — suppress these immediately','Soft bounce = temporary failure (inbox full, server down) — SFMC retries automatically'],
+           practice:'Using your welcome email from the previous unit, create a send definition targeting your Practice_Contacts DE. Schedule it for 30 minutes from now. After sending, review the Tracking tab for opens, clicks, and bounces.',
+           quiz:[{q:'What is a hard bounce?',a:'A permanent email delivery failure — usually an invalid or non-existent email address.',opts:['A temporary delivery failure','A permanent delivery failure','An email marked as spam','An unsubscribe request'],correct:1},{q:'What does Click Rate measure?',a:'The percentage of recipients who clicked at least one link in the email.',opts:['The percentage of emails delivered','The percentage of emails opened','The percentage of recipients who clicked a link','The number of emails sent'],correct:2}]},
+        ]
+      },
+      {
+        id:'m3', title:'Automate with Journey Builder', units:2, points:300,
+        units_list:[
+          {id:'u6', title:'Automate with Automation Studio', type:'module', duration:'15 min', points:150,
+           overview:'Automation Studio handles batch and scheduled automation — data imports, SQL queries, and scheduled sends. It is the backbone of SFMC operations.',
+           concepts:['Automation Studio runs scheduled or triggered workflows called Automations','Activities in an Automation: Import File, SQL Query, Send Email, Filter, Data Extract, Fire Event','Scheduled automations run on a cron-like schedule — hourly, daily, weekly','Triggered automations fire when a file lands in a watched FTP folder','The Activity Log shows run history — use it to diagnose failures and monitor performance'],
+           practice:'Build a scheduled automation that: (1) Runs every Monday at 7am, (2) Imports a CSV from FTP into your Practice_Contacts DE, (3) Sends your welcome email to new contacts. Activate it in test mode.',
+           quiz:[{q:'What is the purpose of Automation Studio?',a:'To run scheduled or triggered batch processes — data imports, queries, and sends — without manual intervention.',opts:['To design customer journeys with decision splits','To run scheduled or triggered batch processes','To build drag-and-drop email templates','To manage subscriber suppression lists'],correct:1},{q:'What does a SQL Query activity do in Automation Studio?',a:'Runs a SQL query against SFMC data extensions to create or update a target data extension.',opts:['Sends an email to a query result','Runs a SQL query to create or update a data extension','Imports data from Salesforce CRM','Exports data to an FTP folder'],correct:1}]},
+          {id:'u7', title:'Build Customer Journeys in Journey Builder', type:'module', duration:'20 min', points:150,
+           overview:'Journey Builder is SFMC's multi-step journey orchestration tool. Design personalised, automated customer experiences triggered by real behaviour.',
+           concepts:['Journey Builder creates multi-step automated journeys triggered by customer data or behaviour','Entry Sources: Data Extension, Salesforce Data, CloudPages, API Event, Audience Builder','Key activities: Send Email, Send SMS, Wait, Decision Split, Engagement Split, Random Split, Update Contact','Decision Split routes contacts based on data attributes — e.g. Country = UK goes left, all others go right','Engagement Split routes based on email behaviour — opened, clicked, or no action','Journey settings: re-entry rules (can a contact enter again?), exit criteria, goal tracking'],
+           practice:'Build a 3-step welcome journey: (1) Entry source: Practice_Contacts DE, (2) Send welcome email immediately, (3) Wait 3 days, (4) Decision Split: if contact opened email → send follow-up email, else → send re-engagement email. Activate in test mode.',
+           quiz:[{q:'What is a Decision Split in Journey Builder?',a:'A split that routes contacts into different paths based on data attributes or field values.',opts:['A split based on email open and click behaviour','A random 50/50 split for A/B testing','A split based on data attributes or field values','A wait activity that pauses the journey'],correct:2},{q:'What does an Engagement Split do?',a:'Routes contacts based on their email engagement — whether they opened, clicked, or did not interact.',opts:['Splits contacts by geographic region','Routes contacts based on email engagement behaviour','Assigns contacts to different agents','Creates separate journeys for new vs returning contacts'],correct:1}]},
+        ]
+      },
+    ]
+  },
+  {
+    id:'trail2', name:'Salesforce Administrator Fundamentals', icon:'⚙️', color:'#7c6af7',
+    points:2700, badgeEmoji:'🥈', badgeName:'Salesforce Admin',
+    description:'Learn to configure and manage Salesforce CRM — users, security, data model, automation with Flow, reports, and dashboards.',
+    modules:[
+      {
+        id:'m4', title:'Salesforce Platform & Navigation', units:2, points:400,
+        units_list:[
+          {id:'u8', title:'Get Started with the Salesforce Platform', type:'module', duration:'15 min', points:200,
+           overview:'Salesforce is the world's #1 CRM platform. Learn what it is, how it works, and how to navigate Lightning Experience.',
+           concepts:['Salesforce is a cloud-based CRM — Customer Relationship Management — platform','Main clouds: Sales Cloud (sales pipeline), Service Cloud (customer support), Experience Cloud (portals)','A Salesforce Org is your organisation's instance of Salesforce — your data, config, and users','Lightning Experience is the modern UI — faster, more customisable than the legacy Classic view','The App Launcher (grid icon) shows all available apps — each app is a collection of tabs and features'],
+           practice:'Log into your Trailhead Playground. (1) Open the App Launcher and explore 5 apps. (2) Switch between the Sales and Service apps. (3) Customise your navigation bar by adding the Reports tab. (4) Use Global Search to find any Account record.',
+           quiz:[{q:'What does CRM stand for?',a:'Customer Relationship Management — software that helps businesses manage relationships and data about their customers.',opts:['Customer Revenue Management','Customer Relationship Management','Cloud Resource Management','Content Relationship Model'],correct:1},{q:'What is a Salesforce Org?',a:'Your organisation's unique instance of Salesforce containing your data, customisations, and users.',opts:['A team of Salesforce admins','Your organisation's unique Salesforce instance','A type of Salesforce licence','A collection of reports and dashboards'],correct:1}]},
+          {id:'u9', title:'Navigate Lightning Experience', type:'module', duration:'10 min', points:200,
+           overview:'Master Lightning Experience navigation — list views, global search, the home page, and personalisation to boost daily productivity.',
+           concepts:['Global Search (top bar) searches across all records simultaneously — use it constantly','List Views are filtered record lists — create, save, and share custom views for your team','The Home page shows your tasks, activities, and performance dashboards — customise it per role','Pinning a List View makes it the default when you open an object tab','Keyboard shortcut: press / to focus the search bar instantly'],
+           practice:'(1) Create a custom Account list view filtered to Accounts in the Technology industry. (2) Share it with all users. (3) Add a Dashboard component to your Home page. (4) Pin your new list view as the default.',
+           quiz:[{q:'How do you share a list view with your whole team?',a:'When creating or editing the list view, set the sharing option to "All Users" before saving.',opts:['Email the list view URL to teammates','Set sharing to All Users when creating the list view','Export to CSV and share the file','Ask your admin to enable sharing'],correct:1}]},
+        ]
+      },
+      {
+        id:'m5', title:'Core CRM Objects', units:3, points:600,
+        units_list:[
+          {id:'u10', title:'Manage Leads and Contacts', type:'module', duration:'20 min', points:200,
+           overview:'Leads and Contacts are the people in your CRM. Learn the difference, how to use them, and how Lead conversion works.',
+           concepts:['A Lead is an unqualified prospect — someone who might become a customer but has not yet been vetted','A Contact is a qualified person linked to an Account — they are in your business relationship','Lead Conversion creates up to 3 records: Contact + Account + Opportunity — field mappings control what carries over','The Lead record becomes read-only after conversion — the original is preserved for reporting','Lead Status tracks progression: New → Working → Qualified → Converted or Unqualified'],
+           practice:'(1) Create 3 Leads with different statuses (New, Working, Qualified). (2) Convert the Qualified lead — create a new Account and Opportunity during conversion. (3) Verify the new Contact, Account, and Opportunity were created. (4) Add a Contact Role to the Opportunity.',
+           quiz:[{q:'What records are created during Lead conversion?',a:'A Contact, an Account, and optionally an Opportunity — all linked together.',opts:['Only a Contact','A Contact and an Account only','A Contact, an Account, and optionally an Opportunity','A Lead, Contact, and Case'],correct:2},{q:'What happens to a Lead after it is converted?',a:'The Lead record is marked as Converted and becomes read-only — it is preserved for historical reporting.',opts:['It is permanently deleted','It is archived and hidden from all views','It becomes read-only and is marked Converted','It is merged into the new Contact'],correct:2}]},
+          {id:'u11', title:'Track Accounts and Opportunities', type:'module', duration:'20 min', points:200,
+           overview:'Accounts represent the companies you do business with. Opportunities track potential deals. Together they form the heart of your sales pipeline.',
+           concepts:['An Account is a company or organisation — stores billing info, contacts, cases, and opportunities','Account hierarchy: parent-child relationships allow you to model complex corporate structures','An Opportunity represents a potential sale — it has a Stage, Amount, Close Date, and Probability','Opportunity Stages represent your sales process: Prospecting → Qualification → Proposal → Negotiation → Closed Won/Lost','Probability is linked to Stage — Closed Won = 100%, Prospecting = typically 10%'],
+           practice:'(1) Create an Account for a fictional company with Industry and Annual Revenue. (2) Create a child Account under it. (3) Add 3 Opportunities at different stages with amounts and close dates. (4) Move one Opportunity to Closed Won using the Kanban view.',
+           quiz:[{q:'What is an Opportunity in Salesforce?',a:'A record that tracks a potential sale — including stage, amount, close date, and probability.',opts:['A customer support case','A potential sale tracked through your pipeline','A contact at a company','A product in your catalogue'],correct:1},{q:'What does Probability represent on an Opportunity?',a:'The likelihood (percentage) of winning the deal — typically linked to the opportunity stage.',opts:['The discount percentage applied','The number of contacts involved','The likelihood of winning the deal','The number of products in the quote'],correct:2}]},
+          {id:'u12', title:'Log Activities — Tasks, Events, Calls', type:'module', duration:'15 min', points:200,
+           overview:'Activity tracking is how sales reps record their interactions — calls, meetings, emails, and follow-ups. Learn to log and view activity history.',
+           concepts:['Tasks are to-do items: call a prospect, send a proposal, follow up — assigned to a user with a due date','Events are calendar-based: meetings, demos, calls scheduled for a specific time — appear in calendar view','Log a Call records a completed phone conversation with notes — linked to the related record','The Activity Timeline on a record shows all past and upcoming activities in chronological order','Einstein Activity Capture auto-logs emails and events from Gmail/Outlook — reduces manual data entry'],
+           practice:'On one of your Contacts: (1) Log a Call with a 3-sentence summary. (2) Create a follow-up Task due in 5 days. (3) Schedule a meeting Event for next week. (4) Review the Activity Timeline and confirm all 3 appear.',
+           quiz:[{q:'What is the difference between a Task and an Event?',a:'Tasks are to-do items with a due date. Events are scheduled meetings with a specific start and end time on the calendar.',opts:['Tasks are for managers, Events are for reps','Tasks are to-do items with a due date; Events are scheduled meetings with a start and end time','Tasks can repeat; Events cannot','There is no difference — they are the same thing'],correct:1}]},
+        ]
+      },
+      {
+        id:'m6', title:'Salesforce Administration', units:3, points:600,
+        units_list:[
+          {id:'u13', title:'Manage Users, Profiles, and Roles', type:'module', duration:'20 min', points:200,
+           overview:'As a Salesforce Admin, managing who can do what is your most important responsibility. Profiles control permissions; Roles control data visibility.',
+           concepts:['A Profile is assigned to every user — it controls object permissions (Create/Read/Edit/Delete), field access, app visibility','Standard Profiles: System Administrator (full access), Standard User (sales rep), Read Only (view only)','A Role defines position in the hierarchy — managers above can see records owned by people below','Profiles control what you CAN DO; Roles control what records you CAN SEE','Permission Sets extend access beyond a Profile without changing it — best practice over creating custom profiles'],
+           practice:'(1) Create a new user with Standard User profile. (2) Create a 2-level role hierarchy: Sales Manager → Sales Rep. Assign your new user to Sales Rep. (3) Create a Permission Set with Read access to a custom object. Assign it to your user. (4) Verify the user can see the expected records.',
+           quiz:[{q:'What is the key difference between a Profile and a Role?',a:'Profiles control what actions a user can perform (permissions). Roles control which records a user can see (data access).',opts:['Profiles are for admins; Roles are for users','Profiles control permissions; Roles control record visibility','Profiles are assigned by managers; Roles are set by IT','There is no difference between them'],correct:1},{q:'When should you use a Permission Set instead of creating a new Profile?',a:'When you need to grant additional access to a subset of users — Permission Sets extend access without duplicating Profile configuration.',opts:['When you need to restrict a user's access','When creating a new department','When you need to grant specific additional access to some users','Only when onboarding new employees'],correct:2}]},
+          {id:'u14', title:'Control Access with the Security Model', type:'module', duration:'20 min', points:200,
+           overview:'Salesforce has a layered security model. Learn OWD, Role Hierarchy, Sharing Rules, and Field-Level Security — the four pillars of record access.',
+           concepts:['Organisation-Wide Defaults (OWD) set the most restrictive baseline: Private, Public Read Only, or Public Read/Write','Role Hierarchy automatically shares records upward — a manager can see their direct reports' records','Sharing Rules extend access to specific groups beyond OWD — criteria-based or owner-based','Field-Level Security controls which users can see or edit individual fields — set per Profile/Permission Set','Manual Sharing lets record owners share specific records with individuals — one-off access grants'],
+           practice:'(1) Review OWD for Accounts, Contacts, Opportunities, and Leads in Setup. (2) Create a criteria-based Sharing Rule on Account: share Technology industry accounts with the Sales Manager role. (3) Create a Validation Rule on Opportunity: Close Date cannot be in the past when Stage is Prospecting.',
+           quiz:[{q:'What are Organisation-Wide Defaults?',a:'The most restrictive baseline record access for all users — defines who can see records they do not own.',opts:['Default user settings applied to new orgs','The most restrictive baseline access to records for all users','Settings that apply only to admin users','Default dashboard layouts for the whole organisation'],correct:1},{q:'What does a Sharing Rule do?',a:'Extends record access to specific users or groups beyond what OWD allows — without opening access to everyone.',opts:['Restricts record access for specific users','Extends record access to specific users beyond OWD','Replaces the Role Hierarchy for data access','Sets the default owner for new records'],correct:1}]},
+          {id:'u15', title:'Customise with Objects, Fields, and Relationships', type:'module', duration:'25 min', points:200,
+           overview:'Salesforce's power is in customisation — build a data model that fits your business using custom objects, fields, and relationships.',
+           concepts:['Custom Objects store data not covered by standard objects — create them in Setup → Object Manager','Field types: Text, Number, Date, Picklist, Checkbox, Currency, Formula, Lookup, Master-Detail','Lookup: loose relationship — child can exist without parent, no cascade delete','Master-Detail: tight relationship — child cannot exist without parent, cascade delete applies, enables Roll-Up Summary','Roll-Up Summary fields on a parent: COUNT, SUM, MIN, MAX of child records — Master-Detail only'],
+           practice:'(1) Create a custom object "Training__c" with fields: Name (Text), Start_Date__c (Date), Category__c (Picklist: Internal/External), Active__c (Checkbox). (2) Create a Master-Detail relationship from Training__c to Contact. (3) Add a Roll-Up Summary on Contact that COUNTs related Training records.',
+           quiz:[{q:'What is the key difference between a Lookup and a Master-Detail relationship?',a:'In Master-Detail, the child cannot exist without the parent and cascade delete applies. In Lookup, the child is independent.',opts:['Lookup is for standard objects; Master-Detail is for custom objects only','Master-Detail allows the child to exist independently; Lookup does not','In Master-Detail, the child cannot exist without the parent; in Lookup, the child is independent','They are the same — just different names for the same relationship type'],correct:2},{q:'On which relationship type can you create a Roll-Up Summary field?',a:'Master-Detail only — Roll-Up Summary fields aggregate child data on the parent and require a Master-Detail relationship.',opts:['Lookup only','Both Lookup and Master-Detail','Master-Detail only','Neither — Roll-Up Summary is a separate feature'],correct:2}]},
+        ]
+      },
+      {
+        id:'m7', title:'Automate with Salesforce Flow', units:2, points:500,
+        units_list:[
+          {id:'u16', title:'Build Record-Triggered and Screen Flows', type:'module', duration:'30 min', points:250,
+           overview:'Salesforce Flow is the #1 automation tool for admins — replacing Workflow Rules and Process Builder. Learn to build record-triggered and screen flows.',
+           concepts:['Flow types: Record-Triggered (auto-runs on record changes), Screen Flow (guided UI), Scheduled Flow (time-based), Autolaunched Flow (called from Apex)','Before Save flows run before the record is committed — fast, for updating fields on the same record','After Save flows run after commit — use for related record updates, emails, external calls','Screen Flow elements: Text Input, Picklist, Display Text, Radio Buttons, File Upload — collect user input step by step','Always use the Debug button to test a flow before activating — saves time diagnosing logic errors'],
+           practice:'(1) Build a Before-Save Record-Triggered Flow on Opportunity: when Stage changes to Closed Won, set Description = "Won on " + Today's Date. (2) Build a Screen Flow that collects a Contact's Name and Email, then creates the Contact record. Add it to the Contact home page as a button.',
+           quiz:[{q:'What is the key difference between Before Save and After Save in a Record-Triggered Flow?',a:'Before Save runs before the record is written to the database — faster and ideal for updating fields on the same record. After Save runs after commit and is used for related records.',opts:['Before Save is for new records; After Save is for updates','Before Save runs before the record is saved to the database; After Save runs after','Before Save sends emails; After Save updates records','They run at the same time but in different order'],correct:1},{q:'What element would you use in a Screen Flow to let the user choose from a dropdown?',a:'A Picklist screen component — it presents the user with a list of values to choose from.',opts:['Text Input','Display Text','Picklist','Radio Buttons only'],correct:2}]},
+          {id:'u17', title:'Build Scheduled Flows and Handle Errors', type:'module', duration:'25 min', points:250,
+           overview:'Scheduled Flows run automatically at a defined time against a batch of records. Learn to build them correctly and handle errors gracefully.',
+           concepts:['Scheduled Flows: configure a Start time, Frequency (once, daily, weekly), and a filter to define which records to process','Get Records element retrieves a collection of records — apply filters to limit what you process','Loop element iterates over a collection — put logic inside, then a single DML operation outside the loop','Fault Connector handles errors on any element — always add one to prevent silent failures','Governor Limits: max 100 SOQL queries and 150 DML per transaction — avoid DML inside loops (bulkification)'],
+           practice:'Build a Scheduled Flow that runs every Monday at 8am: (1) Get all Opportunities with Close Date in the next 7 days and Stage not Closed. (2) Loop through them. (3) Create a Task for each Opportunity's owner with Subject = "Follow up: " + Opportunity Name. Add a Fault path that sends an admin alert email if anything fails.',
+           quiz:[{q:'Why should you avoid putting DML operations inside a Loop in a Flow?',a:'Each DML inside a loop counts separately against governor limits — 150 max per transaction. Collect records first, then do a single DML outside the loop.',opts:['DML inside a loop causes infinite recursion','It slows the flow but has no other impact','Each DML counts against governor limits — you can hit the 150 limit quickly','Loops do not support DML operations at all'],correct:2}]},
+        ]
+      },
+      {
+        id:'m8', title:'Reports, Dashboards, and Service Cloud', units:2, points:600,
+        units_list:[
+          {id:'u18', title:'Build Reports and Dashboards', type:'module', duration:'25 min', points:300,
+           overview:'Reports and Dashboards turn your Salesforce data into actionable insights. Learn to build all report types and create compelling dashboards.',
+           concepts:['Report types: Tabular (flat list), Summary (grouped with subtotals), Matrix (grouped by rows AND columns), Joined (two report types side by side)','Filters narrow your data: standard filters, field filters, cross-filters (e.g. Accounts WITHOUT Opportunities)','Bucket fields group values on-the-fly without changing underlying data — e.g. bucket Amount into Small/Medium/Large','Dashboard components: Chart, Table, Gauge, Metric — each powered by a report','Dynamic Dashboards show each viewer their own data — powered by "Run as logged-in user" setting'],
+           practice:'(1) Build a Summary report: Opportunities grouped by Stage with SUM of Amount per stage. Add a bucket field grouping Amount into <$10K, $10K-$50K, >$50K. (2) Create a Sales Dashboard with 4 components: pipeline bar chart, closed won metric, top 5 opportunities table, win rate gauge. Set it as dynamic.',
+           quiz:[{q:'Which report type allows you to group data by both rows AND columns simultaneously?',a:'Matrix report — it groups records by a row field and a column field, showing aggregated values at each intersection.',opts:['Tabular','Summary','Matrix','Joined'],correct:2},{q:'What is a dynamic dashboard?',a:'A dashboard that shows each viewer their own data, based on their own record access — powered by "Run as logged-in user".',opts:['A dashboard that refreshes every 5 minutes automatically','A dashboard that shows each viewer their own data based on their access','A dashboard with animated chart transitions','A dashboard that sends email alerts when metrics change'],correct:1}]},
+          {id:'u19', title:'Service Cloud — Cases, Console, and SLAs', type:'module', duration:'25 min', points:300,
+           overview:'Service Cloud powers customer support. Learn to manage Cases, use the Service Console, set up Entitlements and SLAs, and route work with Omni-Channel.',
+           concepts:['A Case is the core Service Cloud object — tracks a customer issue from creation to resolution','Case lifecycle: New → In Progress → Escalated → Closed — customise stages to match your support process','The Service Console is a multi-tab workspace optimised for support agents — shows related records in split-screen','Entitlements define what level of support a customer is entitled to — attach to Account or Contact','Milestones within an Entitlement Process set SLA timers — e.g. First Response within 2 hours, Resolution within 24 hours','Omni-Channel routes Cases automatically to available agents based on their capacity and skills'],
+           practice:'(1) Create 5 test Cases with different Origins (Web, Phone, Email) and Priorities. (2) Open the Service Console and navigate its multi-tab layout. (3) Create an Entitlement Process with two Milestones: First Response (2 hours) and Resolution (24 hours). Attach it to a test Case.',
+           quiz:[{q:'What is an Entitlement Milestone?',a:'A time-based checkpoint within an Entitlement Process — e.g. First Response must happen within 2 hours of Case creation.',opts:['A customer satisfaction score threshold','A time-based SLA checkpoint within an Entitlement Process','A badge awarded when a case is resolved','A required step in the case escalation process'],correct:1}]},
+        ]
+      },
+    ]
+  },
+  {
+    id:'trail3', name:'Data Management and Integration', icon:'🗄️', color:'#22c55e',
+    points:1500, badgeEmoji:'🏆', badgeName:'Data Specialist',
+    description:'Master Salesforce data management — imports, data quality, duplicate prevention, and integration fundamentals with APIs and AppExchange.',
+    modules:[
+      {
+        id:'m9', title:'Import and Manage Data', units:2, points:500,
+        units_list:[
+          {id:'u20', title:'Import Data with Import Wizard and Data Loader', type:'module', duration:'20 min', points:250,
+           overview:'Learn to import and export Salesforce data using the built-in Import Wizard for everyday use and the Data Loader for large volumes.',
+           concepts:['Data Import Wizard: browser-based, max 50,000 records, handles Leads, Contacts, Accounts, custom objects — best for admins','Data Loader: desktop app, millions of records, all objects, supports insert/update/upsert/delete/export — best for large migrations','Always prepare your CSV: correct field names, valid field values, required fields populated','Field Mapping: map CSV column headers to Salesforce field API names — save mappings for reuse','Upsert: insert new records AND update existing ones in a single operation — requires an External ID field'],
+           practice:'(1) Prepare a CSV with 10 fictional Contact records. (2) Import using Data Import Wizard — map all fields. (3) Review the success/error report. (4) Export all Contacts using Data Loader. (5) Update 3 records in the CSV and perform an upsert back into Salesforce.',
+           quiz:[{q:'What is the maximum number of records the Data Import Wizard can handle?',a:'50,000 records — for larger volumes, use the Data Loader which has no practical limit.',opts:['1,000','10,000','50,000','1,000,000'],correct:2},{q:'What does an Upsert operation do?',a:'Inserts new records where no match exists AND updates existing records where a match is found — in a single operation.',opts:['Updates all existing records and deletes duplicates','Inserts new records only','Inserts new records AND updates existing matching records in one operation','Permanently deletes records that fail validation'],correct:2}]},
+          {id:'u21', title:'Maintain Data Quality with Duplicate Rules', type:'module', duration:'20 min', points:250,
+           overview:'Bad data costs businesses millions. Learn to use Duplicate Rules, Matching Rules, Validation Rules, and formula fields to keep your data clean.',
+           concepts:['Duplicate Rules alert or block users when creating a potential duplicate record — configured per object','Matching Rules define what makes two records a match — by email, phone, name, or a combination','The Merge Records feature combines duplicate records into one — you choose which field values to keep','Validation Rules enforce data quality at save time — formula returns TRUE = error, prevents save','Formula fields derive a value from other fields without storing it — always up to date, read-only'],
+           practice:'(1) Activate standard Duplicate Rules for Contacts and Accounts. (2) Try creating a Contact with a duplicate email — observe the alert. (3) Merge two duplicate Contact records. (4) Create a Validation Rule on Opportunity: if Stage = Prospecting, Close Date must not be in the past.',
+           quiz:[{q:'What happens when a Validation Rule formula evaluates to TRUE?',a:'Salesforce displays the error message and prevents the record from being saved.',opts:['The record saves with a warning','The record is saved and flagged for review','An error is shown and the record cannot be saved','The validation rule is automatically disabled'],correct:2}]},
+        ]
+      },
+      {
+        id:'m10', title:'Integration Fundamentals', units:2, points:500,
+        units_list:[
+          {id:'u22', title:'Salesforce APIs and AppExchange', type:'module', duration:'20 min', points:250,
+           overview:'Salesforce connects to the world through APIs. Learn the main API types, AppExchange integrations, and when to use each.',
+           concepts:['REST API: lightweight, JSON-based, ideal for mobile apps and web integrations — most commonly used','Bulk API: optimised for loading or extracting millions of records — asynchronous, processes in batches','Streaming API: real-time data push — get notified instantly when records change without polling','Metadata API: deploy configuration and code between orgs — used by deployment tools like Salesforce CLI','AppExchange: Salesforce's marketplace with thousands of pre-built apps — check before building custom solutions'],
+           practice:'(1) Use Workbench (free tool at workbench.developerforce.com) to run a REST API query: GET /services/data/v59.0/query?q=SELECT+Id,Name+FROM+Account+LIMIT+5. (2) Browse AppExchange and find 3 integration apps (e.g. DocuSign, Slack, Mailchimp). For each: note what it connects to and what business problem it solves.',
+           quiz:[{q:'Which Salesforce API is best for loading millions of records efficiently?',a:'Bulk API — it processes records asynchronously in batches, optimised for high-volume data operations.',opts:['REST API','SOAP API','Bulk API','Streaming API'],correct:2}]},
+          {id:'u23', title:'MuleSoft and Integration Patterns', type:'module', duration:'20 min', points:250,
+           overview:'MuleSoft is Salesforce's integration platform. Learn the three main integration patterns and when to use MuleSoft vs native connectors.',
+           concepts:['MuleSoft Anypoint Platform connects Salesforce to any system — ERP, databases, legacy apps — with pre-built connectors','Real-time integration: API call triggers immediate data sync — best for user-facing data that must be current','Batch integration: data synced on a schedule (nightly, hourly) — best for large volumes, lower urgency','Event-driven integration: changes trigger events that notify connected systems — Platform Events in Salesforce','Connected Apps + OAuth: how external applications authenticate with Salesforce securely'],
+           practice:'(1) In Setup, create a Connected App for a fictional external system. Configure OAuth settings. (2) Research: find one real MuleSoft use case for a retail company. Write a 3-sentence explanation of the integration pattern used and why.',
+           quiz:[{q:'What integration pattern is best when two systems must always show the same data in real time?',a:'Real-time integration — API calls trigger immediate synchronisation so both systems reflect changes as they happen.',opts:['Batch integration — run nightly for efficiency','Real-time integration — API calls sync data immediately','Event-driven integration — only when events occur','File-based integration — transfer CSV files between systems'],correct:1}]},
+        ]
+      },
+      {
+        id:'m11', title:'Apex and LWC Coding Mastery', units:3, points:500,
+        units_list:[
+          {id:'u24', title:'Write Apex Classes and Triggers', type:'module', duration:'30 min', points:200,
+           overview:'Apex is Salesforce's Java-like programming language. Learn to write classes, triggers, and follow governor limit best practices.',
+           concepts:['Apex is strongly typed, compiled, and runs on Salesforce servers — similar to Java','Apex Triggers run before or after DML operations (insert/update/delete/undelete) on records','Before triggers: modify the triggering record without extra DML — use Trigger.new','After triggers: access related records, send emails, call external systems — cannot modify Trigger.new directly','Governor Limits: 100 SOQL queries, 150 DML statements, 6MB heap per transaction — always bulkify your code'],
+           practice:'(1) Write an Apex class "OpportunityHelper" with a static method that takes a List<Opportunity> and returns those with Amount > 10000. (2) Write an Apex trigger on Opportunity (before insert, before update) that sets Description = "High Value Deal" when Amount > 50000. (3) Write a test class with 90%+ coverage.',
+           quiz:[{q:'What is bulkification in Apex?',a:'Writing code that efficiently handles multiple records at once — collecting IDs in a Set, querying once outside the loop, and performing a single DML operation — to avoid hitting governor limits.',opts:['Compressing Apex code to reduce file size','Writing code that handles multiple records at once, querying and performing DML outside loops','A technique for caching SOQL results','A method for calling external APIs in batch mode'],correct:1}]},
+          {id:'u25', title:'Build Lightning Web Components (LWC)', type:'module', duration:'30 min', points:150,
+           overview:'Lightning Web Components are the modern way to build custom UIs in Salesforce. Learn HTML templates, JavaScript controllers, decorators, and the Wire service.',
+           concepts:['LWC uses HTML templates with {property} bindings and JavaScript ES6+ class syntax','@api decorator: makes a property public — parent components can pass values down','@track decorator: makes a property reactive — UI re-renders when it changes (objects/arrays)','@wire decorator: declaratively calls Apex methods or UI API adapters and gets reactive results','Parent-to-child communication: @api properties. Child-to-parent: CustomEvent + dispatchEvent()'],
+           practice:'(1) Create an LWC "accountCard" that accepts a recordId via @api, uses @wire to call getRecord and display Account Name, Industry, and Phone. (2) Add a button that fires a CustomEvent "accountSelected" with the record Id in event.detail. (3) Create a parent component that listens to the event and displays the selected account name.',
+           quiz:[{q:'Which decorator makes an LWC property public so a parent component can pass a value in?',a:'@api — it exposes the property as a public attribute that parent components can set.',opts:['@track','@wire','@api','@public'],correct:2}]},
+          {id:'u26', title:'SOQL Mastery — Query Salesforce Data', type:'module', duration:'25 min', points:150,
+           overview:'SOQL is the language for querying Salesforce data. Learn standard queries, relationship traversal, aggregate functions, and performance best practices.',
+           concepts:['SOQL syntax: SELECT fields FROM Object WHERE filter ORDER BY field LIMIT n','Relationship queries (child-to-parent): SELECT Id, Account.Name FROM Contact — dot notation traverses lookups','Relationship queries (parent-to-child): SELECT Id, (SELECT Id FROM Contacts) FROM Account — subquery in SELECT','Aggregate functions: COUNT(), SUM(), MIN(), MAX(), AVG() — used with GROUP BY for reporting-style queries','Date literals: THIS_YEAR, LAST_MONTH, LAST_N_DAYS:30 — always use these instead of hardcoded dates'],
+           practice:'Write and run these SOQL queries in Workbench: (1) All open Opportunities closing this quarter, ordered by Amount descending. (2) Number of Opportunities per Stage for this year. (3) All Contacts with their Account Name where Account Industry = Financial Services. (4) Accounts that have MORE than 5 Contacts (use HAVING COUNT).',
+           quiz:[{q:'How do you traverse a relationship in SOQL to get a parent field from a child record?',a:'Use dot notation: SELECT Account.Name FROM Contact — this traverses the lookup from Contact up to Account.',opts:['Use a JOIN clause like SQL','Use dot notation: SELECT Account.Name FROM Contact','Use a subquery in the WHERE clause','Use the relationship API endpoint instead of SOQL'],correct:1}]},
+        ]
+      },
+    ]
+  },
 ];
-const PHASE_COLORS={'SFMC Intro':'#f59e0b','SF Foundation':'#22c55e','SF Admin':'#7c6af7','Reporting':'#f59e0b','Service Cloud':'#22c55e','Data Management':'#f43f5e','Advanced SF':'#7c6af7','Capstone':'#38c98a'};
+
+const PHASE_COLORS=const PHASE_COLORS={'SFMC Intro':'#f59e0b','SF Foundation':'#22c55e','SF Admin':'#7c6af7','Reporting':'#f59e0b','Service Cloud':'#22c55e','Data Management':'#f43f5e','Advanced SF':'#7c6af7','Capstone':'#38c98a'};
 const PHASES=[...new Set(CURRICULUM.map(t=>t.phase))];
 
 // ═══ INTERVIEW PREP ═══
@@ -515,7 +695,11 @@ public class AccountHelperTest {
 // ═══ STATE ═══
 let page='habits';
 let habitNav='habits';
-let learnNav='today';
+let learnNav='trails';
+let selectedTopicId=null;
+let selectedModuleId=null;
+let selectedTrailId=null;
+let quizState={};
 let timerInterval=null;
 let timerSeconds=1800; // 30 mins
 let timerRunning=false;
@@ -541,11 +725,37 @@ function setHabitNav(n){habitNav=n;render()}
 // LEARN FUNCTIONS
 function getDayNum(){const s=new Date(S.startDate),t=new Date();s.setHours(0,0,0,0);t.setHours(0,0,0,0);return Math.max(1,Math.floor((t-s)/86400000)+1)}
 function getTodayTopic(){return CURRICULUM[(getDayNum()-1)%CURRICULUM.length]}
-function markDone(id){S.learnDone[id]=!S.learnDone[id];save();render()}
+function markDone(id){S.learnDone[id]=!S.learnDone[id];save();render();}
 function setSession(id,sess){S.learnSession[id]=sess;save();render()}
 function toggleLearnExpand(id){S.learnExpanded[id]=!S.learnExpanded[id];save();render()}
 function getLearnProgress(){return Math.round((Object.keys(S.learnDone).filter(k=>S.learnDone[k]).length/CURRICULUM.length)*100)}
-function setLearnNav(n){learnNav=n;render()}
+function setLearnNav(n){learnNav=n;selectedTopicId=null;selectedModuleId=null;selectedTrailId=null;render();window.scrollTo(0,0);}
+function navTopic(id){if(!id)return;selectedTopicId=id;learnNav='unit';render();window.scrollTo(0,0);}
+function navTrail(id){selectedTrailId=id;selectedModuleId=null;selectedTopicId=null;learnNav='trail';render();window.scrollTo(0,0);}
+function navModule(tid,mid){selectedTrailId=tid;selectedModuleId=mid;selectedTopicId=null;learnNav='module';render();window.scrollTo(0,0);}
+function navBack(){
+  if(learnNav==='unit'){learnNav='module';selectedTopicId=null;render();window.scrollTo(0,0);}
+  else if(learnNav==='module'){learnNav='trail';selectedModuleId=null;render();window.scrollTo(0,0);}
+  else if(learnNav==='trail'){learnNav='trails';selectedTrailId=null;render();window.scrollTo(0,0);}
+}
+function answerQuiz(uid,qIdx,optIdx){
+  const key=uid+'_'+qIdx;
+  if(quizState[key]!==undefined)return;
+  quizState[key]=optIdx;
+  render();
+}
+function getTotalPoints(){
+  let pts=0;
+  TRAILS.forEach(tr=>tr.modules.forEach(m=>m.units_list.forEach(u=>{if(S.learnDone[u.id])pts+=u.points;})));
+  return pts;
+}
+function getTotalPossible(){return TRAILS.reduce((a,tr)=>a+tr.points,0);}
+function getTrailPoints(trail){
+  let pts=0;trail.modules.forEach(m=>m.units_list.forEach(u=>{if(S.learnDone[u.id])pts+=u.points;}));return pts;
+}
+function getTrailTotal(trail){return trail.modules.reduce((a,m)=>a+m.units_list.reduce((b,u)=>b+u.points,0),0);}
+function getModulePoints(mod){return mod.units_list.reduce((a,u)=>a+(S.learnDone[u.id]?u.points:0),0);}
+function getAllUnits(){const us=[];TRAILS.forEach(tr=>tr.modules.forEach(m=>m.units_list.forEach(u=>us.push({...u,trail:tr,module:m}))));return us;}
 
 // TIMER FUNCTIONS
 function formatTime(s){const m=Math.floor(s/60);const sec=s%60;return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`}
@@ -579,7 +789,11 @@ function dKeyStats(ago){const d=new Date();d.setDate(d.getDate()-ago);return d.t
 function getStreakStats(){let s=0,i=0;while(getDayScoreStats(dKeyStats(i))>=80&&i<200){s++;i++;}return s;}
 function getBestStreakStats(){let b=0,c=0;for(let i=180;i>=0;i--){getDayScoreStats(dKeyStats(i))>=80?b=Math.max(b,++c):c=0;}return b;}
 function getAvgStats(days){let t=0,c=0;for(let i=0;i<days;i++){const s=getDayScoreStats(dKeyStats(i));if(s>0){t+=s;c++;}}return c>0?Math.round(t/c):0;}
-function getLearnPctStats(){if(!S.learnDone)return 0;return Math.round(Object.keys(S.learnDone).filter(k=>S.learnDone[k]).length/CURRICULUM.length*100);}
+function getLearnPctStats(){
+  if(!S.learnDone)return 0;
+  const total=TRAILS.reduce((a,tr)=>a+tr.modules.reduce((b,m)=>b+m.units_list.length,0),0);
+  return total>0?Math.round(Object.keys(S.learnDone).filter(k=>S.learnDone[k]).length/total*100):0;
+}
 function getPrepPctStats(){if(!S.prepDone)return 0;return Math.round(Object.keys(S.prepDone).filter(k=>S.prepDone[k]).length/36*100);}
 function getCodePctStats(){if(!S.codeDone)return 0;return Math.round(Object.keys(S.codeDone).filter(k=>S.codeDone[k]).length/CODING.length*100);}
 function getActiveDaysStats(){if(!S.days)return 0;return Object.keys(S.days).filter(k=>Object.values(S.days[k]).some(v=>v)).length;}
@@ -900,92 +1114,257 @@ function saveWorkoutLog(){
 }
 
 function renderLearn(){
-  const todayTopic=getTodayTopic();
-  const progress=getLearnProgress();
-  const dn=getDayNum();
+  const totalPts=getTotalPoints();
+  const totalPoss=getTotalPossible();
+  const allUnits=getAllUnits();
+  const doneUnits=allUnits.filter(u=>S.learnDone[u.id]).length;
   let h='';
 
-  h+=`<div class="learn-header">
-    <div class="dash-label">6-Month Salesforce Journey</div>
-    <div class="learn-day">Day ${dn}</div>
-    <div class="learn-meta">Today: <strong style="color:var(--accent)">${todayTopic.topic}</strong><br><span style="color:var(--muted)">${todayTopic.phase} · Week ${todayTopic.week}</span></div>
-    <div class="learn-progress"><div class="learn-prog-fill" style="width:${progress}%"></div></div>
-    <div class="learn-prog-label">${Object.keys(S.learnDone).filter(k=>S.learnDone[k]).length}/${CURRICULUM.length} topics completed · ${progress}%</div>
+  // TOP HEADER always visible
+  h+=`<div style="margin:12px;background:var(--card);border-radius:20px;padding:16px;border:0.5px solid var(--border)">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <div style="flex:1">
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Salesforce Learning Path</div>
+        <div style="font-size:28px;font-weight:900;color:var(--accent)">${totalPts} pts</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">${doneUnits}/${allUnits.length} units complete</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:32px">${totalPts>=totalPoss?'🏆':totalPts>=2000?'🥈':totalPts>=500?'🥉':'🎯'}</div>
+        <div style="font-size:10px;color:var(--amber);font-weight:700;margin-top:2px">${totalPts>=totalPoss?'Legend':totalPts>=2000?'Expert':totalPts>=500?'Practitioner':'Beginner'}</div>
+      </div>
+    </div>
+    <div style="background:var(--bg3);border-radius:99px;height:8px;overflow:hidden">
+      <div style="height:8px;border-radius:99px;background:var(--accent);width:${Math.round(totalPts/totalPoss*100)}%;transition:width 0.5s"></div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:6px">${Math.round(totalPts/totalPoss*100)}% of ${totalPoss} points earned</div>
   </div>`;
 
-  h+=`<div class="switcher">
-    <button class="sw-btn ${learnNav==='today'?'active':''}" onclick="setLearnNav('today')">Today</button>
-    <button class="sw-btn ${learnNav==='all'?'active':''}" onclick="setLearnNav('all')">All Topics</button>
-  </div>`;
-
-  if(learnNav==='today'){
-    const t=todayTopic;const sess=S.learnSession[t.id]||'learn';const done=S.learnDone[t.id];
-    h+=`<div style="margin:0 12px 12px">
-      <div class="topic-card" style="border-color:${PHASE_COLORS[t.phase]}44">
-        <div style="padding:14px;border-bottom:0.5px solid var(--border)">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-            <span class="week-badge" style="background:${PHASE_COLORS[t.phase]}22;color:${PHASE_COLORS[t.phase]}">${t.phase}</span>
-            <span style="font-size:11px;color:var(--muted)">Week ${t.week} · ${t.tech}</span>
-          </div>
-          <div style="font-size:18px;font-weight:700;margin-bottom:4px">${t.topic}</div>
-        </div>
-        <div style="padding:12px">
-          <div class="session-tabs">
-            <button class="sess-btn ${sess==='learn'?'active':''}" onclick="setSession(${t.id},'learn')">📖 Learn</button>
-            <button class="sess-btn ${sess==='practice'?'active':''}" onclick="setSession(${t.id},'practice')">⚡ Practice</button>
-            <button class="sess-btn ${sess==='interview'?'active':''}" onclick="setSession(${t.id},'interview')">🎯 Interview</button>
-          </div>`;
-    if(sess==='learn'){
-      h+=`<div class="section-title">Key Concepts</div>`;
-      t.concepts.forEach(c=>{h+=`<div class="concept-item"><div class="concept-dot"></div><div class="concept-text">${c}</div></div>`;});
-      if(t.resource) h+=`<div class="resource-box">📚 ${t.resource}</div>`;
-    }
-    if(sess==='practice') h+=`<div class="section-title">Practice Task</div><div class="practice-box">${t.practice}</div>`;
-    if(sess==='interview'){
-      h+=`<div class="section-title">Interview Questions</div>`;
-      t.interviews.forEach((q,i)=>{h+=`<div class="interview-item"><span style="color:var(--accent);font-weight:700;font-size:13px;margin-right:6px">Q${i+1}.</span><span style="font-size:13px;line-height:1.5">${q}</span></div>`;});
-    }
-    h+=`<button class="mark-done-btn ${done?'done':''}" onclick="markDone(${t.id})">${done?'✓ Completed Today':'Mark as Done'}</button>
-        </div></div></div>`;
+  // BREADCRUMB
+  if(learnNav!=='trails'){
+    const trail=TRAILS.find(t=>t.id===selectedTrailId);
+    const mod=trail&&selectedModuleId?trail.modules.find(m=>m.id===selectedModuleId):null;
+    h+=`<div style="display:flex;align-items:center;gap:6px;margin:0 12px 8px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--accent);cursor:pointer" onclick="setLearnNav('trails')">🏠 Trails</span>
+      ${trail?`<span style="font-size:12px;color:var(--muted)">›</span><span style="font-size:12px;color:${learnNav==='trail'?'var(--text)':'var(--accent)'};cursor:pointer" onclick="navTrail('${trail.id}')">${trail.icon} ${trail.name}</span>`:''}
+      ${mod?`<span style="font-size:12px;color:var(--muted)">›</span><span style="font-size:12px;color:${learnNav==='module'?'var(--text)':'var(--accent)'};cursor:pointer" onclick="navModule('${trail.id}','${mod.id}')">${mod.title}</span>`:''}
+      ${selectedTopicId?`<span style="font-size:12px;color:var(--muted)">›</span><span style="font-size:12px;color:var(--text)">${getAllUnits().find(u=>u.id===selectedTopicId)?.title||''}</span>`:''}
+    </div>`;
   }
 
-  if(learnNav==='all'){
-    PHASES.forEach(phase=>{
-      const pt=CURRICULUM.filter(t=>t.phase===phase);const col=PHASE_COLORS[phase];
-      const doneCnt=pt.filter(t=>S.learnDone[t.id]).length;
-      h+=`<div class="phase-section"><div class="phase-label" style="color:${col}">● ${phase} <span style="color:var(--muted);font-weight:400">${doneCnt}/${pt.length}</span></div>`;
-      pt.forEach(t=>{
-        const done=S.learnDone[t.id];const open=S.learnExpanded[t.id];const sess=S.learnSession[t.id]||'learn';
-        h+=`<div class="topic-card">
-          <div class="topic-hdr" onclick="toggleLearnExpand(${t.id})">
-            <div class="topic-num" style="background:${col}22;color:${col}">${t.id}</div>
-            <div class="topic-info">
-              <div class="topic-title" style="${done?'text-decoration:line-through;color:var(--muted)':''}">${t.topic}</div>
-              <div class="topic-sub">Week ${t.week} · ${t.tech}</div>
+  // ── TRAILS VIEW ──
+  if(learnNav==='trails'){
+    TRAILS.forEach(trail=>{
+      const trailPts=getTrailPoints(trail);
+      const trailTotal=getTrailTotal(trail);
+      const trailUnits=trail.modules.reduce((a,m)=>a+m.units_list.length,0);
+      const trailDone=trail.modules.reduce((a,m)=>a+m.units_list.filter(u=>S.learnDone[u.id]).length,0);
+      const pct=Math.round(trailPts/trailTotal*100);
+      const complete=trailPts>=trailTotal;
+      h+=`<div style="margin:0 12px 12px;background:var(--card);border-radius:20px;border:0.5px solid ${trail.color}44;overflow:hidden;cursor:pointer" onclick="navTrail('${trail.id}')">
+        <div style="background:linear-gradient(135deg,${trail.color}22,${trail.color}08);padding:16px;border-bottom:0.5px solid ${trail.color}22">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="font-size:36px">${trail.icon}</div>
+            <div style="flex:1">
+              <div style="font-size:10px;color:${trail.color};font-weight:700;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">Trail · ${trail.modules.length} modules</div>
+              <div style="font-size:17px;font-weight:700;color:var(--text);line-height:1.3">${trail.name}</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:4px">${trail.description}</div>
             </div>
-            <div class="topic-done" style="background:${done?'rgba(34,197,94,0.15)':'var(--bg3)'};color:${done?'#22c55e':'var(--muted)'}">${done?'✓':'Pending'}</div>
-            <div class="topic-chev ${open?'open':''}">▼</div>
+            <div style="text-align:center;flex-shrink:0">
+              <div style="font-size:26px">${complete?trail.badgeEmoji:'🔒'}</div>
+              <div style="font-size:10px;color:${complete?'var(--amber)':'var(--muted)'};font-weight:700;margin-top:2px">${complete?trail.badgeName:'Locked'}</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:12px 16px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px">
+            <span>${trailDone}/${trailUnits} units</span>
+            <span style="color:${trail.color};font-weight:700">${trailPts}/${trailTotal} pts · ${pct}%</span>
+          </div>
+          <div style="background:var(--bg3);border-radius:99px;height:6px;overflow:hidden">
+            <div style="height:6px;border-radius:99px;background:${trail.color};width:${pct}%"></div>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">
+            ${trail.modules.map(m=>{const mp=getModulePoints(m);const mc=m.units_list.filter(u=>S.learnDone[u.id]).length;return `<span style="font-size:10px;padding:3px 8px;border-radius:99px;background:${mc===m.units_list.length?trail.color+'22':'var(--bg3)'};color:${mc===m.units_list.length?trail.color:'var(--muted)'};">${mc===m.units_list.length?'✓ ':''}${m.title.split(' ').slice(0,3).join(' ')}</span>`;}).join('')}
+          </div>
+        </div>
+      </div>`;
+    });
+  }
+
+  // ── TRAIL VIEW ──
+  else if(learnNav==='trail'){
+    const trail=TRAILS.find(t=>t.id===selectedTrailId);
+    if(!trail){h+=`<div class="note">Trail not found.</div>`;document.getElementById('main').innerHTML=h;return;}
+    const trailPts=getTrailPoints(trail);const trailTotal=getTrailTotal(trail);
+    h+=`<div style="margin:0 12px 12px;background:linear-gradient(135deg,${trail.color}22,${trail.color}08);border-radius:20px;padding:16px;border:0.5px solid ${trail.color}44">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="font-size:40px">${trail.icon}</div>
+        <div>
+          <div style="font-size:10px;color:${trail.color};font-weight:700;text-transform:uppercase;letter-spacing:0.8px">Trail</div>
+          <div style="font-size:20px;font-weight:900;color:var(--text)">${trail.name}</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">${trailPts}/${trailTotal} pts · ${trail.modules.length} modules</div>
+        </div>
+      </div>
+    </div>`;
+    trail.modules.forEach(mod=>{
+      const modPts=getModulePoints(mod);const modDone=mod.units_list.filter(u=>S.learnDone[u.id]).length;
+      const modComplete=modDone===mod.units_list.length;
+      h+=`<div style="margin:0 12px 10px;background:var(--card);border-radius:16px;border:0.5px solid var(--border);overflow:hidden;cursor:pointer" onclick="navModule('${trail.id}','${mod.id}')">
+        <div style="padding:14px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:40px;height:40px;border-radius:10px;background:${modComplete?trail.color:trail.color+'22'};display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">${modComplete?'✓':'📘'}</div>
+            <div style="flex:1">
+              <div style="font-size:10px;color:${trail.color};font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px">Module · ${mod.units_list.length} units</div>
+              <div style="font-size:15px;font-weight:700;color:var(--text)">${mod.title}</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0">
+              <div style="font-size:13px;font-weight:700;color:${trail.color}">${modPts}</div>
+              <div style="font-size:10px;color:var(--muted)">/ ${mod.units_list.reduce((a,u)=>a+u.points,0)} pts</div>
+            </div>
+          </div>
+          <div style="margin-top:10px;background:var(--bg3);border-radius:99px;height:4px;overflow:hidden">
+            <div style="height:4px;border-radius:99px;background:${trail.color};width:${Math.round(modDone/mod.units_list.length*100)}%"></div>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:8px">
+            ${mod.units_list.map(u=>`<div style="width:28px;height:28px;border-radius:50%;background:${S.learnDone[u.id]?trail.color:trail.color+'22'};display:flex;align-items:center;justify-content:center;font-size:11px;color:${S.learnDone[u.id]?'#fff':trail.color};font-weight:700" title="${u.title}">${S.learnDone[u.id]?'✓':mod.units_list.indexOf(u)+1}</div>`).join('')}
+          </div>
+        </div>
+      </div>`;
+    });
+  }
+
+  // ── MODULE VIEW ──
+  else if(learnNav==='module'){
+    const trail=TRAILS.find(t=>t.id===selectedTrailId);
+    const mod=trail?trail.modules.find(m=>m.id===selectedModuleId):null;
+    if(!mod){h+=`<div class="note">Module not found.</div>`;document.getElementById('main').innerHTML=h;return;}
+    h+=`<div style="margin:0 12px 12px;background:var(--card);border-radius:16px;padding:14px;border:0.5px solid ${trail.color}44">
+      <div style="font-size:10px;color:${trail.color};font-weight:700;text-transform:uppercase;margin-bottom:4px">Module</div>
+      <div style="font-size:18px;font-weight:700;color:var(--text)">${mod.title}</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">${mod.units_list.length} units · ${mod.units_list.reduce((a,u)=>a+u.points,0)} points</div>
+    </div>`;
+    mod.units_list.forEach((unit,idx)=>{
+      const done=S.learnDone[unit.id];
+      h+=`<div style="margin:0 12px 8px;background:var(--card);border-radius:14px;border:0.5px solid ${done?trail.color+'44':'var(--border)'};overflow:hidden;cursor:pointer" onclick="navTopic('${unit.id}')">
+        <div style="padding:14px;display:flex;align-items:center;gap:12px">
+          <div style="width:36px;height:36px;border-radius:50%;background:${done?trail.color:'var(--bg3)'};display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:${done?'#fff':'var(--muted)'}">
+            ${done?'✓':idx+1}
+          </div>
+          <div style="flex:1">
+            <div style="font-size:10px;color:var(--muted);margin-bottom:2px">${unit.type} · ${unit.duration}</div>
+            <div style="font-size:14px;font-weight:600;color:${done?'var(--muted)':'var(--text)'};${done?'text-decoration:line-through':''}">${unit.title}</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0">
+            <div style="font-size:13px;font-weight:700;color:${done?trail.color:'var(--muted)'}">${unit.points} pts</div>
+            <div style="font-size:11px;color:var(--accent);margin-top:2px">Start →</div>
+          </div>
+        </div>
+      </div>`;
+    });
+  }
+
+  // ── UNIT VIEW ──
+  else if(learnNav==='unit'){
+    const allU=getAllUnits();
+    const unitData=allU.find(u=>u.id===selectedTopicId);
+    if(!unitData){h+=`<div class="note">Unit not found.</div>`;document.getElementById('main').innerHTML=h;return;}
+    const trail=unitData.trail;const mod=unitData.module;
+    const done=S.learnDone[unitData.id];
+    const unitIdx=mod.units_list.findIndex(u=>u.id===unitData.id);
+    const prevUnit=unitIdx>0?mod.units_list[unitIdx-1]:null;
+    const nextUnit=unitIdx<mod.units_list.length-1?mod.units_list[unitIdx+1]:null;
+
+    // Unit header
+    h+=`<div style="margin:0 12px 12px;background:linear-gradient(135deg,${trail.color}22,${trail.color}06);border-radius:20px;padding:16px;border:0.5px solid ${trail.color}44">
+      <div style="font-size:10px;color:${trail.color};font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">${trail.icon} ${trail.name} › ${mod.title}</div>
+      <div style="font-size:20px;font-weight:900;color:var(--text);line-height:1.3;margin-bottom:8px">${unitData.title}</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:11px;background:${trail.color}22;color:${trail.color};padding:3px 10px;border-radius:99px;font-weight:700">${unitData.points} pts</span>
+        <span style="font-size:11px;color:var(--muted)">⏱ ${unitData.duration}</span>
+        ${done?`<span style="font-size:11px;background:rgba(34,197,94,0.15);color:#22c55e;padding:3px 10px;border-radius:99px;font-weight:700">✓ Complete</span>`:''}
+      </div>
+    </div>`;
+
+    // Overview
+    h+=`<div style="margin:0 12px 10px;background:var(--card);border-radius:14px;padding:14px;border:0.5px solid var(--border)">
+      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px">📋 Overview</div>
+      <div style="font-size:14px;color:var(--text);line-height:1.7">${unitData.overview}</div>
+    </div>`;
+
+    // Key Concepts
+    h+=`<div style="margin:0 12px 10px;background:var(--card);border-radius:14px;padding:14px;border:0.5px solid var(--border)">
+      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px">📖 Key Concepts</div>`;
+    unitData.concepts.forEach((c,i)=>{
+      h+=`<div style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start">
+        <div style="width:22px;height:22px;border-radius:50%;background:${trail.color}22;color:${trail.color};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">${i+1}</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.6">${c}</div>
+      </div>`;
+    });
+    h+=`</div>`;
+
+    // Practice
+    h+=`<div style="margin:0 12px 10px;background:rgba(34,197,94,0.06);border-radius:14px;padding:14px;border:0.5px solid rgba(34,197,94,0.2)">
+      <div style="font-size:10px;color:#22c55e;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;font-weight:700">⚡ Hands-On Practice</div>
+      <div style="font-size:13px;color:var(--text);line-height:1.7">${unitData.practice}</div>
+    </div>`;
+
+    // Quiz
+    if(unitData.quiz&&unitData.quiz.length>0){
+      h+=`<div style="margin:0 12px 10px;background:var(--card);border-radius:14px;padding:14px;border:0.5px solid var(--border)">
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:12px">🎯 Knowledge Check</div>`;
+      unitData.quiz.forEach((q,qi)=>{
+        const key=unitData.id+'_'+qi;
+        const answered=quizState[key]!==undefined;
+        const selected=quizState[key];
+        h+=`<div style="margin-bottom:14px">
+          <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px">Q${qi+1}: ${q.q}</div>`;
+        q.opts.forEach((opt,oi)=>{
+          let bg='var(--bg3)';let col='var(--text)';let border='var(--border)';
+          if(answered){
+            if(oi===q.correct){bg='rgba(34,197,94,0.15)';col='#22c55e';border='rgba(34,197,94,0.4)';}
+            else if(oi===selected&&selected!==q.correct){bg='rgba(244,63,94,0.15)';col='#f43f5e';border='rgba(244,63,94,0.4)';}
+          }
+          const clickFn=answered?'':'answerQuiz("'+unitData.id+'",'+qi+','+oi+')';
+          h+=`<div onclick="${clickFn}" style="padding:10px 12px;background:${bg};border:0.5px solid ${border};border-radius:8px;margin-bottom:6px;cursor:${answered?'default':'pointer'};font-size:13px;color:${col};transition:all 0.2s">
+            <span style="font-weight:600;margin-right:8px">${['A','B','C','D'][oi]}.</span>${opt}
+            ${answered&&oi===q.correct?' ✓':''}${answered&&oi===selected&&selected!==q.correct?' ✗':''}
           </div>`;
-        if(open){
-          h+=`<div class="topic-body">
-            <div class="session-tabs">
-              <button class="sess-btn ${sess==='learn'?'active':''}" onclick="setSession(${t.id},'learn');event.stopPropagation()">📖 Learn</button>
-              <button class="sess-btn ${sess==='practice'?'active':''}" onclick="setSession(${t.id},'practice');event.stopPropagation()">⚡ Practice</button>
-              <button class="sess-btn ${sess==='interview'?'active':''}" onclick="setSession(${t.id},'interview');event.stopPropagation()">🎯 Interview</button>
-            </div>`;
-          if(sess==='learn'){h+=`<div class="section-title">Key Concepts</div>`;t.concepts.forEach(c=>{h+=`<div class="concept-item"><div class="concept-dot"></div><div class="concept-text">${c}</div></div>`;});if(t.resource)h+=`<div class="resource-box">📚 ${t.resource}</div>`;}
-          if(sess==='practice') h+=`<div class="section-title">Practice Task</div><div class="practice-box">${t.practice}</div>`;
-          if(sess==='interview'){h+=`<div class="section-title">Interview Questions</div>`;t.interviews.forEach((q,i)=>{h+=`<div class="interview-item"><span style="color:var(--accent);font-weight:700;font-size:13px;margin-right:6px">Q${i+1}.</span><span style="font-size:13px">${q}</span></div>`;});}
-          h+=`<button class="mark-done-btn ${done?'done':''}" onclick="markDone(${t.id});event.stopPropagation()">${done?'✓ Completed':'Mark as Done'}</button></div>`;
-        }
+        });
+        if(answered){h+=`<div style="background:rgba(124,106,247,0.1);border-radius:8px;padding:10px;font-size:12px;color:var(--accent);margin-top:4px">💡 ${q.a}</div>`;}
         h+=`</div>`;
       });
       h+=`</div>`;
-    });
-  }
-  document.getElementById('main').innerHTML=h;
-}
+    }
 
+    // Mark complete button
+    h+=`<div style="margin:0 12px 12px">
+      <button onclick="markDone('${unitData.id}')" style="width:100%;padding:14px;background:${done?'var(--green)':'var(--accent)'};border:none;border-radius:14px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px">
+        ${done?'✓ Unit Complete — '+unitData.points+' pts earned':'Mark Complete +'+unitData.points+' pts'}
+      </button>
+      <div style="display:flex;gap:8px">
+        ${prevUnit?`<button onclick="navTopic('${prevUnit.id}')" style="flex:1;padding:10px;background:var(--card);border:0.5px solid var(--border);border-radius:10px;color:var(--text);font-size:12px;cursor:pointer">← Previous</button>`:'<div style="flex:1"></div>'}
+        ${nextUnit?`<button onclick="navTopic('${nextUnit.id}')" style="flex:1;padding:10px;background:var(--card);border:0.5px solid var(--border);border-radius:10px;color:var(--text);font-size:12px;cursor:pointer">Next →</button>`:`<button onclick="navModule('${trail.id}','${mod.id}')" style="flex:1;padding:10px;background:${trail.color};border:none;border-radius:10px;color:#fff;font-size:12px;cursor:pointer;font-weight:700">Finish Module ✓</button>`}
+      </div>
+    </div>`;
+  }
+
+  document.getElementById('main').innerHTML=h;
+
+  // Fix quiz onclick after render
+  if(learnNav==='unit'){
+    const unitData=getAllUnits().find(u=>u.id===selectedTopicId);
+    if(unitData&&unitData.quiz){
+      unitData.quiz.forEach((q,qi)=>{
+        q.opts.forEach((opt,oi)=>{
+          const key=unitData.id+'_'+qi;
+          if(quizState[key]===undefined){
+            const els=document.querySelectorAll('[data-quiz="'+unitData.id+'_'+qi+'_'+oi+'"]');
+          }
+        });
+      });
+    }
+  }
+}
 function renderInterview(){
   const totalQ=INTERVIEW_PREP.reduce((a,c)=>a+c.qs.length,0);
   const doneQ=Object.keys(S.prepDone).filter(k=>S.prepDone[k]).length;
