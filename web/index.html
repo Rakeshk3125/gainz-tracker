@@ -7,23 +7,20 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="GAINZ">
 <meta name="theme-color" content="#0a0a0f">
-<title>GAINZ Habit Tracker</title>
+<title>GAINZ Tracker</title>
 <style>
-:root {
-  --bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--card:#13131c;--border:#2a2a3a;
-  --text:#f0f0f8;--muted:#6b6b8a;--accent:#7c6af7;--green:#22c55e;
-  --amber:#f59e0b;--coral:#f43f5e;--purple:#a855f7;
-}
+:root{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--card:#13131c;--border:#2a2a3a;--text:#f0f0f8;--muted:#6b6b8a;--accent:#7c6af7;--green:#22c55e;--amber:#f59e0b;--coral:#f43f5e;--purple:#a855f7;}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;min-height:100vh;overflow-x:hidden}
 .header{background:var(--bg2);border-bottom:0.5px solid var(--border);padding:12px 16px 8px;position:sticky;top:0;z-index:100}
 .header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .logo{font-size:20px;font-weight:900;color:var(--accent);letter-spacing:3px}
 .header-sub{font-size:11px;color:var(--muted)}
-.nav{display:flex;gap:4px}
-.nav-btn{flex:1;padding:8px 4px;background:none;border:none;border-radius:8px;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;text-transform:uppercase;letter-spacing:0.5px;transition:all 0.2s}
+.nav{display:flex;gap:3px}
+.nav-btn{flex:1;padding:7px 2px;background:none;border:none;border-radius:8px;font-size:10px;font-weight:600;color:var(--muted);cursor:pointer;text-transform:uppercase;letter-spacing:0.3px;transition:all 0.2s}
 .nav-btn.active{background:var(--accent);color:#fff}
 .main{padding:0 0 80px}
+/* SHARED */
 .dashboard{margin:12px;background:var(--card);border-radius:20px;padding:16px;border:0.5px solid var(--border)}
 .dash-row{display:flex;gap:12px;margin-bottom:14px}
 .dash-main{flex:1}
@@ -50,15 +47,16 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .badge-text{font-size:10px;color:var(--muted);font-weight:600}
 .badge.got .badge-text{color:var(--amber)}
 .switcher{display:flex;margin:0 12px 10px;background:var(--bg3);border-radius:12px;padding:3px}
-.sw-btn{flex:1;padding:8px;background:none;border:none;border-radius:10px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.2s}
+.sw-btn{flex:1;padding:8px;background:none;border:none;border-radius:10px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.2s}
 .sw-btn.active{background:var(--card);color:var(--text)}
 .card{margin:0 12px 12px;background:var(--card);border-radius:20px;padding:16px;border:0.5px solid var(--border)}
 .card-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px}
+/* WEEK/MONTH */
 .week-row{display:flex;justify-content:space-between;align-items:flex-end;height:130px}
 .wday{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
 .wscore{font-size:9px;font-weight:700}
 .wbar-bg{width:28px;height:80px;background:var(--bg3);border-radius:6px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
-.wbar-fill{width:100%;border-radius:6px;transition:height 0.5s ease}
+.wbar-fill{width:100%;border-radius:6px}
 .wlabel{font-size:10px;color:var(--muted)}
 .wlabel.tod{color:var(--accent);font-weight:700}
 .wdot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
@@ -70,6 +68,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)}
 .leg-dot{width:10px;height:10px;border-radius:3px}
 .mavg{text-align:center;margin-top:10px;font-size:13px;color:var(--muted)}
+/* HABITS */
 .cat-card{margin:0 12px 8px;background:var(--card);border-radius:16px;border:0.5px solid var(--border);overflow:hidden}
 .cat-hdr{display:flex;align-items:center;padding:12px;gap:8px;cursor:pointer}
 .cat-bar{width:4px;height:16px;border-radius:2px;flex-shrink:0}
@@ -77,9 +76,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .cat-sc{font-size:12px;font-weight:600;color:var(--muted);margin-right:4px}
 .cat-chev{font-size:10px;color:var(--muted);transition:transform 0.2s}
 .cat-chev.open{transform:rotate(180deg)}
-.hrow{display:flex;align-items:center;padding:12px;border-top:0.5px solid var(--border);gap:10px;cursor:pointer;transition:background 0.15s}
+.hrow{display:flex;align-items:center;padding:12px;border-top:0.5px solid var(--border);gap:10px;cursor:pointer}
 .hrow:active{background:var(--bg3)}
-.chk{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--muted);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s}
+.chk{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--muted);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .chk.on{border-color:transparent}
 .chkmark{font-size:13px;color:#fff;font-weight:800;display:none}
 .chk.on .chkmark{display:block}
@@ -88,25 +87,123 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .hlabel.done{text-decoration:line-through;color:var(--muted)}
 .hstrk{font-size:11px;color:var(--amber);font-weight:600}
 .note{margin:4px 12px 12px;background:var(--bg3);border-radius:16px;padding:14px;border:0.5px solid var(--border);font-size:13px;line-height:1.6;font-style:italic;text-align:center}
+/* LEARN */
+.learn-header{margin:12px;background:var(--card);border-radius:20px;padding:16px;border:0.5px solid var(--border)}
+.learn-day{font-size:40px;font-weight:900;color:var(--accent);line-height:1}
+.learn-meta{font-size:12px;color:var(--muted);margin-top:4px;margin-bottom:12px}
+.learn-progress{height:6px;background:var(--bg3);border-radius:99px;overflow:hidden;margin-bottom:8px}
+.learn-prog-fill{height:6px;border-radius:99px;background:var(--accent)}
+.learn-prog-label{font-size:11px;color:var(--muted)}
+.phase-section{margin:0 12px 8px}
+.phase-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;padding:0 4px}
+.topic-card{background:var(--card);border-radius:14px;border:0.5px solid var(--border);margin-bottom:6px;overflow:hidden}
+.topic-hdr{display:flex;align-items:center;padding:12px;gap:10px;cursor:pointer}
+.topic-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.topic-info{flex:1}
+.topic-title{font-size:14px;font-weight:600;color:var(--text)}
+.topic-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.topic-chev{font-size:10px;color:var(--muted);transition:transform 0.2s}
+.topic-chev.open{transform:rotate(180deg)}
+.topic-done{font-size:11px;padding:3px 8px;border-radius:99px;font-weight:600;flex-shrink:0}
+.topic-body{border-top:0.5px solid var(--border);padding:14px}
+.session-tabs{display:flex;gap:4px;margin-bottom:12px}
+.sess-btn{flex:1;padding:6px;background:var(--bg3);border:none;border-radius:8px;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer}
+.sess-btn.active{background:var(--accent);color:#fff}
+.section-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;margin-top:12px}
+.section-title:first-child{margin-top:0}
+.concept-item{display:flex;gap:8px;margin-bottom:6px}
+.concept-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:6px;flex-shrink:0}
+.concept-text{font-size:13px;line-height:1.5}
+.practice-box{background:var(--bg3);border-radius:10px;padding:12px;font-size:13px;line-height:1.6}
+.resource-box{background:rgba(124,106,247,0.1);border-radius:10px;padding:10px;font-size:12px;color:var(--accent);margin-top:8px}
+.interview-item{display:flex;gap:8px;margin-bottom:8px}
+.mark-done-btn{width:100%;margin-top:14px;padding:10px;background:var(--accent);border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer}
+.mark-done-btn.done{background:var(--green)}
+.week-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:99px;font-weight:600;margin-right:6px}
+/* INTERVIEW PREP */
+.prep-header{margin:12px;background:var(--card);border-radius:20px;padding:16px;border:0.5px solid var(--border)}
+.prep-title{font-size:28px;font-weight:900;color:var(--coral);line-height:1}
+.prep-sub{font-size:12px;color:var(--muted);margin-top:6px;margin-bottom:12px}
+.timer-box{background:var(--bg3);border-radius:14px;padding:14px;text-align:center;margin-bottom:12px}
+.timer-display{font-size:40px;font-weight:900;color:var(--amber);letter-spacing:2px}
+.timer-label{font-size:11px;color:var(--muted);margin-top:4px}
+.timer-btns{display:flex;gap:8px;margin-top:10px}
+.timer-btn{flex:1;padding:8px;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer}
+.prep-card{margin:0 12px 8px;background:var(--card);border-radius:16px;border:0.5px solid var(--border);overflow:hidden}
+.prep-cat-hdr{display:flex;align-items:center;padding:12px;gap:8px;cursor:pointer}
+.prep-q-row{border-top:0.5px solid var(--border);padding:12px;cursor:pointer}
+.prep-q{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px}
+.prep-a{font-size:13px;color:var(--muted);line-height:1.6;display:none}
+.prep-a.show{display:block}
+.prep-ans-btn{font-size:11px;color:var(--accent);font-weight:600;margin-top:6px;cursor:pointer;background:none;border:none;padding:0}
+.prep-done-badge{font-size:11px;padding:2px 8px;border-radius:99px;font-weight:600;float:right}
+/* STATS */
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1rem}
+.stat-card{background:var(--bg3);border-radius:14px;padding:14px;border:0.5px solid var(--border)}
+.stat-card-label{font-size:11px;color:var(--muted);margin-bottom:4px}
+.stat-card-val{font-size:24px;font-weight:900;color:var(--text)}
+.stat-card-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.stats-tab-row{display:flex;gap:4px;margin-bottom:12px}
+.stats-tab{flex:1;padding:7px;background:var(--bg3);border:none;border-radius:10px;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer}
+.stats-tab.active{background:var(--card);color:var(--text);border:0.5px solid var(--border)}
+.chart-card{background:var(--card);border-radius:16px;border:0.5px solid var(--border);padding:14px;margin-bottom:10px}
+.chart-card-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.chart-card-sub{font-size:11px;color:var(--muted);margin-bottom:12px}
+.hm-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;margin-bottom:10px}
+.hm-cell{aspect-ratio:1;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,0.85);font-weight:700}
+.chart-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.chart-legend span{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted)}
+.leg-sq{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+/* WORKOUT LOG */
+.workout-banner{background:rgba(245,158,11,0.1);border:0.5px solid rgba(245,158,11,0.3);border-radius:14px;margin:0 12px 10px;padding:14px;cursor:pointer}
+.workout-banner-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.workout-day-badge{background:#f59e0b;color:#000;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px}
+.workout-type{font-size:13px;font-weight:600;color:var(--text)}
+.workout-exercises{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ex-row{background:var(--bg3);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center}
+.ex-name{font-size:12px;color:var(--text)}
+.ex-sets{font-size:11px;color:var(--amber);font-weight:700}
+.log-form{background:var(--card);border-radius:14px;margin:0 12px 10px;padding:14px;border:0.5px solid var(--border)}
+.log-form-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px}
+.log-entries{margin-bottom:10px}
+.log-entry{background:var(--bg3);border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.log-date{font-size:11px;color:var(--accent);font-weight:600}
+.log-text{flex:1;margin:0 8px}
+.log-input{width:100%;background:var(--bg3);border:0.5px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--text);margin-bottom:8px;font-family:inherit}
+.log-save-btn{width:100%;padding:10px;background:var(--amber);border:none;border-radius:10px;color:#000;font-size:13px;font-weight:700;cursor:pointer}
+/* CODING */
+.code-header{margin:12px;background:var(--card);border-radius:20px;padding:16px;border:0.5px solid var(--border)}
+.code-title{font-size:28px;font-weight:900;color:var(--green);line-height:1}
+.code-sub{font-size:12px;color:var(--muted);margin-top:6px;margin-bottom:12px}
+.code-card{margin:0 12px 8px;background:var(--card);border-radius:16px;border:0.5px solid var(--border);overflow:hidden}
+.code-hdr{display:flex;align-items:center;padding:12px;gap:10px;cursor:pointer}
+.code-tag{font-size:10px;padding:2px 8px;border-radius:99px;font-weight:700}
+.code-body{border-top:0.5px solid var(--border);padding:14px}
+.code-block{background:#0d0d1a;border-radius:10px;padding:12px;font-family:'Courier New',monospace;font-size:12px;color:#a8daff;line-height:1.6;overflow-x:auto;white-space:pre;margin:8px 0}
+.code-task{background:rgba(34,197,94,0.08);border-left:3px solid var(--green);border-radius:0 10px 10px 0;padding:12px;font-size:13px;line-height:1.6;margin:8px 0}
+.diff-badge{font-size:10px;padding:2px 8px;border-radius:99px;font-weight:700;margin-left:auto}
 </style>
 </head>
 <body>
 <div class="header">
   <div class="header-top">
     <span class="logo">GAINZ</span>
-    <span class="header-sub">Consistency Challenge</span>
+    <span class="header-sub" id="header-sub">Consistency Challenge</span>
   </div>
   <div class="nav">
-    <button class="nav-btn active" onclick="setNav('habits')">🔥 Habits</button>
-    <button class="nav-btn" onclick="setNav('week')">📊 Week</button>
-    <button class="nav-btn" onclick="setNav('month')">📅 Month</button>
+    <button class="nav-btn active" onclick="setPage('habits')">🔥 Habits</button>
+    <button class="nav-btn" onclick="setPage('learn')">📚 Learn</button>
+    <button class="nav-btn" onclick="setPage('interview')">⚡ Interview</button>
+    <button class="nav-btn" onclick="setPage('coding')">💻 Coding</button>
+    <button class="nav-btn" onclick="setPage('stats')">📊 Stats</button>
   </div>
 </div>
 <div class="main" id="main"></div>
 <script>
+// ═══ HABITS ═══
 const HABITS=[
   {id:1,cat:'Morning Routine',label:'Wake up 5 A.M',emoji:'⏰'},
-  {id:2,cat:'Morning Routine',label:'20 minutes workout',emoji:'💪'},
+  {id:2,cat:'Morning Routine',label:'1 hour workout',emoji:'💪',hasWorkout:true},
   {id:3,cat:'Morning Routine',label:'Take cold shower',emoji:'🚿'},
   {id:4,cat:'Morning Routine',label:'Journaling',emoji:'📔'},
   {id:5,cat:'Health',label:'4L water',emoji:'💧'},
@@ -117,50 +214,572 @@ const HABITS=[
   {id:10,cat:'Personal Growth',label:'Work on side hustle',emoji:'💼'},
   {id:11,cat:'Digital Detox',label:'No screentime 1hr after wakeup & before bed',emoji:'📵'},
   {id:12,cat:'Digital Detox',label:'Offline games',emoji:'🎮'},
-  {id:13,cat:'Financial Growth',label:'SIP',emoji:'📈'},
-  {id:14,cat:'Financial Growth',label:'Gold silver ETF',emoji:'🥇'},
-  {id:15,cat:'Financial Growth',label:'Emergency fund',emoji:'🏦'},
-  {id:16,cat:'Night Routine',label:'Plan your next day',emoji:'📋'},
-  {id:17,cat:'Night Routine',label:'Sleep at 10:30 PM',emoji:'😴'},
-  {id:18,cat:'Night Routine',label:'Do skincare',emoji:'✨'},
+  {id:13,cat:'Night Routine',label:'Plan your next day',emoji:'📋'},
+  {id:14,cat:'Night Routine',label:'Sleep at 10:30 PM',emoji:'😴'},
+  {id:15,cat:'Night Routine',label:'Do skincare',emoji:'✨'},
 ];
-const COLORS={'Morning Routine':'#f59e0b','Health':'#22c55e','Personal Growth':'#7c6af7','Digital Detox':'#f43f5e','Financial Growth':'#38c98a','Night Routine':'#a855f7'};
+const HCOLORS={'Morning Routine':'#f59e0b','Health':'#22c55e','Personal Growth':'#7c6af7','Digital Detox':'#f43f5e','Night Routine':'#a855f7'};
+
+const WORKOUT_PLANS={
+  0:{day:'Sunday',type:'Rest / Active Recovery',exercises:[{name:'Light stretching',sets:'15 min'},{name:'Yoga or walk',sets:'30 min'},{name:'Foam rolling',sets:'15 min'}]},
+  1:{day:'Monday',type:'Push — Chest, Shoulders, Triceps',exercises:[{name:'Push-ups',sets:'4×15'},{name:'Dumbbell shoulder press',sets:'4×12'},{name:'Incline push-ups',sets:'3×15'},{name:'Lateral raises',sets:'3×12'},{name:'Tricep dips',sets:'3×15'},{name:'Diamond push-ups',sets:'3×12'}]},
+  2:{day:'Tuesday',type:'Pull — Back & Biceps',exercises:[{name:'Pull-ups / Assisted pull-ups',sets:'4×8'},{name:'Dumbbell rows',sets:'4×12'},{name:'Face pulls',sets:'3×15'},{name:'Bicep curls',sets:'3×12'},{name:'Hammer curls',sets:'3×12'},{name:'Reverse flies',sets:'3×12'}]},
+  3:{day:'Wednesday',type:'Legs — Quads, Hamstrings, Glutes',exercises:[{name:'Squats',sets:'4×15'},{name:'Lunges',sets:'3×12 each'},{name:'Glute bridges',sets:'3×20'},{name:'Calf raises',sets:'4×20'},{name:'Step-ups',sets:'3×12'},{name:'Wall sit',sets:'3×45s'}]},
+  4:{day:'Thursday',type:'Strength & Core',exercises:[{name:'Romanian deadlifts',sets:'4×10'},{name:'Plank',sets:'3×60s'},{name:'Russian twists',sets:'3×20'},{name:'Leg raises',sets:'3×15'},{name:'Mountain climbers',sets:'3×30s'},{name:'Hollow hold',sets:'3×30s'}]},
+  5:{day:'Friday',type:'Push — Chest, Shoulders, Triceps',exercises:[{name:'Bench press / Push-ups',sets:'4×12'},{name:'Arnold press',sets:'4×10'},{name:'Chest flies',sets:'3×15'},{name:'Overhead press',sets:'3×12'},{name:'Skull crushers',sets:'3×12'},{name:'Close-grip push-ups',sets:'3×15'}]},
+  6:{day:'Saturday',type:'Pull + Cardio',exercises:[{name:'Pull-ups',sets:'4×8'},{name:'Bent-over rows',sets:'4×12'},{name:'Cable rows',sets:'3×12'},{name:'Running / Jump rope',sets:'20 min'},{name:'Burpees',sets:'3×10'},{name:'Cool-down stretch',sets:'10 min'}]},
+};
+
 const MILESTONES=[7,14,30,60,90,180];
-const CATS=[...new Set(HABITS.map(h=>h.cat))];
-const TOTAL=HABITS.length;
-let nav='habits';
-let S={startDate:todayKey(),days:{},col:{}};
+const HCATS=[...new Set(HABITS.map(h=>h.cat))];
+const HTOTAL=HABITS.length;
+
+// ═══ CURRICULUM ═══
+const CURRICULUM=[
+  {id:1,week:1,phase:'SFMC Intro',topic:'What is Salesforce Marketing Cloud?',tech:'SFMC',concepts:['What is SFMC and who uses it?','How SFMC fits within the Salesforce ecosystem','Difference between SFMC and Salesforce CRM','Key use cases: email, SMS, social, advertising, journeys','What a Business Unit is in SFMC'],practice:'Watch the SFMC overview on Trailhead. Write 3 sentences explaining SFMC to someone who has never heard of it.',resource:'Trailhead: Marketing Cloud Basics → Get Started with Marketing Cloud',interviews:['What is SFMC and how does it differ from Sales Cloud?','Name the main studios in SFMC and what each does.','Who are the typical users of SFMC?']},
+  {id:2,week:1,phase:'SFMC Intro',topic:'Navigating the SFMC Interface',tech:'SFMC',concepts:['Logging in and the SFMC home screen layout','The App Switcher: jumping between studios','Setup menu: where admin settings live','Content Builder: the central hub for email content','Finding your account settings and user profile'],practice:'Log into a SFMC trial org. Navigate to each studio from the App Switcher and identify one key feature in each.',resource:'Trailhead: Marketing Cloud Basics → Navigate Marketing Cloud',interviews:['Where would you go in SFMC to create a new email?','What is the App Switcher used for?','How do you access Setup in SFMC?']},
+  {id:3,week:2,phase:'SFMC Intro',topic:'SFMC Data Model: Subscribers, Lists & Data Extensions',tech:'SFMC',concepts:['What is a Subscriber in SFMC','Lists vs Data Extensions: key differences','What is a Publication List and why it matters','Subscriber statuses: Active, Unsubscribed, Bounced, Held','How data extensions store custom fields and rows'],practice:'Create a simple data extension with 4 fields: FirstName, LastName, Email, Country. Add 3 test records.',resource:'Trailhead: Email Marketing with Marketing Cloud → Manage Subscribers',interviews:['What is the difference between a List and a Data Extension?','What subscriber statuses exist?','Why would you use a data extension instead of a list?']},
+  {id:4,week:2,phase:'SFMC Intro',topic:'Email Studio: Building & Sending Your First Email',tech:'SFMC',concepts:['Content Builder: drag-and-drop email editor','Email blocks: text, image, button, HTML','CAN-SPAM compliance: required elements','Creating a send definition: who, what, when','Sending a test email before the real send'],practice:'Build a simple welcome email: logo, greeting, CTA button, unsubscribe link. Send a test to your own email.',resource:'Trailhead: Email Marketing with Marketing Cloud → Create and Send Email',interviews:['What are the CAN-SPAM required elements?','Walk me through sending an email in SFMC.','What is a send definition?']},
+  {id:5,week:3,phase:'SFMC Intro',topic:'Journey Builder & Automation Studio',tech:'SFMC',concepts:['What is Journey Builder and what problems does it solve?','What is Automation Studio and how does it differ?','When to use Journey Builder vs Automation Studio','Key Journey Builder components: entry source, activities, wait times, splits','A simple automation: scheduled import → send email'],practice:'In Journey Builder, build a 2-step journey: entry event → 1 day wait → email send. Activate in test mode.',resource:'Trailhead: Marketing Cloud Journey Builder → Build a Basic Journey',interviews:['What is the difference between Journey Builder and Automation Studio?','What is an entry event in Journey Builder?','When would you use Automation Studio?']},
+  {id:6,week:4,phase:'SF Foundation',topic:'Salesforce Platform Overview',tech:'Salesforce Core',concepts:['What is Salesforce? CRM vs Platform vs Cloud','The main clouds: Sales Cloud, Service Cloud, Experience Cloud','What is a Salesforce Org and Trailhead Playground?','Lightning Experience vs Classic','Salesforce licensing model'],practice:'Log into your Trailhead Playground. Explore the App Launcher and identify 5 different apps.',resource:'Trailhead: Salesforce Platform Basics → Get Started',interviews:['What is Salesforce and what problem does it solve?','Difference between Sales Cloud and Service Cloud?','What is Lightning Experience?']},
+  {id:7,week:4,phase:'SF Foundation',topic:'Lightning Experience Navigation',tech:'Salesforce Core',concepts:['The Lightning navigation bar and App Launcher','Global search across all records','The Home page: activities, tasks, dashboards','List views: creating, saving, sharing','Personalising your layout'],practice:'Pin 3 tabs to the navigation bar, create a custom Account list view, and add a task to your Home page.',resource:'Trailhead: Lightning Experience Basics',interviews:['How does global search work?','What is a list view and how do you create one?','How would you help a new sales rep customise their layout?']},
+  {id:8,week:5,phase:'SF Foundation',topic:'Core Objects: Leads & Contacts',tech:'Salesforce Core',concepts:['What is a Lead? When and why leads are used','What is a Contact? How it differs from a Lead','Lead conversion: Lead → Contact + Account + Opportunity','Key Lead fields: Status, Source, Rating, Owner','Key Contact fields: Account Name, Title, Email, Phone'],practice:'Create 3 Leads with different statuses. Convert one into a Contact and Account.',resource:'Trailhead: Sales Cloud for Sales Reps → Manage Leads and Contacts',interviews:['Difference between a Lead and a Contact?','Walk me through Lead conversion.','Why use Leads instead of creating Contacts directly?']},
+  {id:9,week:5,phase:'SF Foundation',topic:'Core Objects: Accounts & Opportunities',tech:'Salesforce Core',concepts:['What is an Account? B2B vs B2C','Account hierarchy: parent-child relationships','What is an Opportunity? The sales pipeline','Opportunity stages: Prospecting to Closed Won','Key fields: Amount, Close Date, Stage, Probability'],practice:'Create an Account for a fictional company, then 3 Opportunities at different stages.',resource:'Trailhead: Sales Cloud for Sales Reps → Track Opportunities',interviews:['Difference between an Account and Opportunity?','What are opportunity stages?','How does probability relate to stage?']},
+  {id:10,week:6,phase:'SF Foundation',topic:'Activities: Tasks, Events & Logging Calls',tech:'Salesforce Core',concepts:['Tasks vs Events vs Log a Call','Creating a Task: subject, due date, priority','Logging a call: capturing phone details','Creating an Event: scheduling meetings','Activity timeline: viewing all history'],practice:'On a Contact: log a call, create a follow-up task due in 3 days, schedule a meeting for next week.',resource:'Trailhead: Sales Cloud for Sales Reps → Log Customer Interactions',interviews:['Difference between a Task and an Event?','How do you log a call?','Why is capturing activities important?']},
+  {id:11,week:7,phase:'SF Admin',topic:'Pipeline Management & Forecasting',tech:'Sales Cloud',concepts:['Sales pipeline and how Salesforce visualises it','Kanban view for opportunities','Collaborative Forecasting: predicting revenue','Forecast categories: Pipeline, Best Case, Commit, Closed','Setting up the Forecast tab'],practice:'Switch Opportunity list to Kanban mode. Move 3 opportunities across stages. Navigate to Forecasts tab.',resource:'Trailhead: Sales Cloud for Sales Reps → Manage Forecasts',interviews:['What is collaborative forecasting?','Difference between Commit and Best Case?','How does Kanban differ from a list view?']},
+  {id:12,week:8,phase:'SF Admin',topic:'User Management: Users, Profiles & Roles',tech:'Salesforce Admin',concepts:['What is a User record and key fields','What is a Profile? Permissions it controls','Standard profiles: System Administrator, Standard User, Read Only','What is a Role? The role hierarchy','Creating a new user'],practice:'Create a new test user with Standard User profile. Assign them to a role.',resource:'Trailhead: Admin Beginner → Manage Users',interviews:['Difference between a Profile and a Role?','What does a Profile control?','How would you create a new user?']},
+  {id:13,week:9,phase:'SF Admin',topic:'Salesforce Security Model',tech:'Salesforce Admin',concepts:['Organisation-Wide Defaults (OWD)','OWD options: Private, Public Read Only, Public Read/Write','Role Hierarchy: how higher roles inherit access','Sharing Rules: extending access beyond OWD','Manual sharing: sharing individual records'],practice:'In Setup, review OWD settings for Accounts, Contacts, Opportunities, and Leads.',resource:'Trailhead: Admin Beginner → Control Access to Records',interviews:['What are Organisation-Wide Defaults?','How does the role hierarchy open record access?','What is a Sharing Rule?']},
+  {id:14,week:10,phase:'SF Admin',topic:'Custom Objects, Fields & Relationships',tech:'Salesforce Admin',concepts:['What is a custom object? When to create one','Field types: Text, Number, Date, Picklist, Checkbox, Currency, Lookup','Creating a custom object in Setup','Lookup vs Master-Detail relationship','Roll-up Summary fields'],practice:'Create a custom object "Training Course" with 5 fields: Course Name, Start Date, Duration, Category, Active.',resource:'Trailhead: Admin Beginner → Create a Custom Object',interviews:['Difference between Lookup and Master-Detail?','What is a roll-up summary field?','When would you create a custom object?']},
+  {id:15,week:11,phase:'SF Admin',topic:'Page Layouts, Record Types & Compact Layouts',tech:'Salesforce Admin',concepts:['What is a Page Layout?','Adding/removing fields, sections, related lists','What is a Record Type?','Assigning page layouts to profiles','Compact Layouts: fields in highlights and mobile'],practice:'Create a custom page layout for Training Course. Create 2 record types: Internal and External Training.',resource:'Trailhead: Admin Beginner → Customise Record Pages',interviews:['Difference between Page Layout and Record Type?','How do you assign layouts to different profiles?','What is a compact layout?']},
+  {id:16,week:12,phase:'SF Admin',topic:'Salesforce Flow: Automation Without Code',tech:'Salesforce Flow',concepts:['What is Salesforce Flow? Why it replaced Process Builder','Flow types: Screen, Record-Triggered, Scheduled, Autolaunched','Key elements: Start, Assignment, Decision, Loop, Get/Update Records','The Flow Builder interface','Your first record-triggered flow'],practice:'Build a Record-Triggered Flow on Training Course: when created, set Active = TRUE automatically.',resource:'Trailhead: Flow Basics → Build a Simple Flow',interviews:['What is a Salesforce Flow and what types exist?','Difference between Record-Triggered and Screen Flow?','Why did Salesforce retire Workflow Rules?']},
+  {id:17,week:13,phase:'SF Admin',topic:'Screen Flows: Guided User Experiences',tech:'Salesforce Flow',concepts:['What is a Screen Flow and when to use it','Screen Flow components: Text Input, Picklist, Display Text','Collecting user input and using it in logic','Adding a Screen Flow to a record page','Validation in Screen Flows'],practice:'Build a Screen Flow that guides creating a new Training Course. Add it to the Training Course home page.',resource:'Trailhead: Flow Basics → Build a Screen Flow',interviews:['What is a Screen Flow?','Where can you embed a Screen Flow?','How do you validate user input?']},
+  {id:18,week:14,phase:'Reporting',topic:'Reports: Building Your First Salesforce Report',tech:'Salesforce Reporting',concepts:['Report types: Tabular, Summary, Matrix, Joined','The Report Builder: rows, columns, filters, groupings','Creating a Tabular report','Adding groupings: Summary report by Stage','Filtering: this quarter\'s records'],practice:'Build 2 reports: (1) Tabular list of all open Opportunities, (2) Summary grouped by Stage with total Amount.',resource:'Trailhead: Reports & Dashboards for Lightning → Build a Report',interviews:['Difference between Tabular and Summary report?','How do you add a filter?','What is a grouping?']},
+  {id:19,week:15,phase:'Reporting',topic:'Dashboards: Visualising Data',tech:'Salesforce Reporting',concepts:['What is a Dashboard?','Component types: Chart, Table, Gauge, Metric','Creating a dashboard from reports','Dashboard filters','The running user concept'],practice:'Create a Sales dashboard: Pipeline by Stage (bar), Closed Won (metric), Top 5 Opportunities (table), Win Rate (gauge).',resource:'Trailhead: Reports & Dashboards for Lightning → Create a Dashboard',interviews:['Difference between a report and dashboard?','What is the running user?','What are dashboard filters?']},
+  {id:20,week:16,phase:'Service Cloud',topic:'Service Cloud: Cases & the Service Console',tech:'Service Cloud',concepts:['What is Service Cloud?','The Case object: fields, status, priority, origin','Case lifecycle: New → In Progress → Escalated → Closed','The Service Console: multi-tab interface','Logging a case: web, email, phone, manual'],practice:'Enable Service Cloud. Create 5 test Cases with different statuses and origins. Open the Service Console.',resource:'Trailhead: Service Cloud for Agents → Get Started with Cases',interviews:['What is a Case in Salesforce?','What is the Service Console?','What are typical case lifecycle stages?']},
+  {id:21,week:17,phase:'Service Cloud',topic:'Entitlements, SLAs & Omni-Channel',tech:'Service Cloud',concepts:['What is an Entitlement?','Milestones: time-based checkpoints within a case','SLA management using entitlements','What is Omni-Channel?','Presence statuses: Available, Busy'],practice:'Create an Entitlement Process with 2 milestones: First Response (2hrs) and Case Resolution (24hrs).',resource:'Trailhead: Service Cloud for Admins → Set Up Entitlements',interviews:['What is an Entitlement?','What is a Milestone?','What is Omni-Channel?']},
+  {id:22,week:18,phase:'Data Management',topic:'Data Import Wizard & Data Loader',tech:'Data Management',concepts:['Data Import Wizard vs Data Loader','Preparing a CSV for import','Import Wizard walkthrough for Contacts','Data Loader for larger imports','Reviewing import results and error logs'],practice:'Prepare a CSV with 10 Contact records. Import using Data Import Wizard. Review the success/failure report.',resource:'Trailhead: Data Management → Import Data',interviews:['Difference between Import Wizard and Data Loader?','What file format does Salesforce use?','How do you handle import errors?']},
+  {id:23,week:19,phase:'Data Management',topic:'Duplicate Management & Data Quality',tech:'Data Management',concepts:['Why data quality matters','Duplicate Rules: alerting or blocking duplicates','Matching Rules: defining a match','Merge Records: combining duplicates','Validation Rules: enforcing data entry standards'],practice:'Enable Duplicate Rules for Contacts. Try creating a duplicate. Merge 2 test Contact records.',resource:'Trailhead: Data Quality → Manage Duplicate Records',interviews:['What is a Duplicate Rule?','Difference between Matching Rule and Duplicate Rule?','How do you merge duplicate records?']},
+  {id:24,week:20,phase:'Data Management',topic:'Integration Concepts: APIs & AppExchange',tech:'Integration',concepts:['What is an API? REST vs SOAP','Salesforce API types: REST, Bulk, Streaming, Metadata','AppExchange: pre-built integrations','What is MuleSoft?','Integration patterns: real-time, batch, event-driven'],practice:'Browse AppExchange and find 3 integration apps. For each write what it connects to and what problem it solves.',resource:'Trailhead: Integration Basics → Get Started with Salesforce Integration',interviews:['What is the Salesforce REST API?','Difference between MuleSoft and AppExchange integration?','Real-time vs batch integration pattern?']},
+  {id:25,week:22,phase:'Advanced SF',topic:'Advanced Flows: Scheduled Flows & Complex Logic',tech:'Salesforce Flow',concepts:['Scheduled Flows: running automation at a set time','Get Records: querying multiple records','Loop element with Collection variable','Fault paths: handling errors gracefully','Subflows: calling one flow from another'],practice:'Build a Scheduled Flow that runs every Monday at 8am and creates a Task for every Opportunity closing in 7 days.',resource:'Trailhead: Flow Builder → Build a Scheduled Flow',interviews:['What is a Scheduled Flow?','How do you use a Loop in a Flow?','Difference between record-triggered and scheduled flow?']},
+  {id:26,week:24,phase:'Advanced SF',topic:'Optimisation & Salesforce Best Practices',tech:'Salesforce Admin',concepts:['Iterating on Salesforce: test, measure, improve','Using Reports to measure impact','Identifying manual processes to automate','User feedback: finding friction points','Change management: communicating changes'],practice:'Interview a fictional sales rep. Ask their 3 biggest Salesforce pain points. Propose a config change for each.',resource:'Trailhead: Admin Best Practices → Manage Change in Your Org',interviews:['How do you decide what to automate?','How do you measure a config change impact?','What is change management in Salesforce?']},
+  {id:27,week:25,phase:'Capstone',topic:'Capstone: End-to-End Salesforce Solution',tech:'Salesforce Core',concepts:['Review: SFMC, CRM, Admin, Flows, Reporting, Service Cloud, Data','Capstone brief: design a solution for a fictional company','Requirements gathering: objects, processes, users, reporting','Sketch: data model, user roles, automation, dashboards','Document the solution before building'],practice:'Design a Salesforce solution for a 50-person software company. Write a 1-page design doc: data model, automations, user roles, 3 KPI reports.',resource:'Salesforce Admin certification study guide on Trailhead',interviews:['How would you design a Salesforce solution from scratch?','What questions would you ask a client?','How do you prioritise what to build first?']},
+];
+const PHASE_COLORS={'SFMC Intro':'#f59e0b','SF Foundation':'#22c55e','SF Admin':'#7c6af7','Reporting':'#f59e0b','Service Cloud':'#22c55e','Data Management':'#f43f5e','Advanced SF':'#7c6af7','Capstone':'#38c98a'};
+const PHASES=[...new Set(CURRICULUM.map(t=>t.phase))];
+
+// ═══ INTERVIEW PREP ═══
+const INTERVIEW_PREP=[
+  {cat:'Admin Fundamentals',color:'#7c6af7',qs:[
+    {q:'What is the difference between a Profile and a Permission Set?',a:'A Profile is mandatory for every user and controls their baseline access — object permissions, field access, app visibility. A Permission Set extends access on top of a Profile without changing it. Best practice is to use minimal Profiles and extend with Permission Sets for flexibility.'},
+    {q:'Explain the Salesforce security model from top to bottom.',a:'The security model has 4 layers: (1) Organisation level — login hours, IP restrictions; (2) Object level — Profiles/Permission Sets control CRUD on objects; (3) Field level — field-level security controls field visibility; (4) Record level — OWD sets baseline, Role Hierarchy opens up access upward, Sharing Rules extend to specific groups, Manual Sharing for individual records.'},
+    {q:'What is OWD and why does it matter?',a:'Organisation-Wide Defaults set the most restrictive baseline access to records. If OWD is Private, users can only see records they own. The Role Hierarchy, Sharing Rules, and Manual Sharing can then open up access — but never restrict below OWD. Start restrictive and open up as needed.'},
+    {q:'What is the difference between a Lookup and a Master-Detail relationship?',a:'A Lookup is a loose relationship — the child can exist without the parent, and deleting the parent does not delete the child. A Master-Detail is a tight relationship — the child cannot exist without the parent, deleting the parent deletes all children (cascade delete), and Roll-Up Summary fields are only available on Master-Detail.'},
+    {q:'What is a Roll-Up Summary field?',a:'A Roll-Up Summary field on a parent object aggregates data from related child records in a Master-Detail relationship. You can COUNT, SUM, MIN, or MAX child field values. For example, counting the number of Cases on an Account, or summing the Amount of all Opportunities on an Account.'},
+    {q:'What is a Validation Rule?',a:'A Validation Rule enforces data quality by evaluating a formula when a record is saved. If the formula returns TRUE, Salesforce shows an error message and prevents saving. For example: preventing a Close Date in the past when Stage is Prospecting, or requiring a phone number when Account Type is Customer.'},
+  ]},
+  {cat:'Salesforce Flow',color:'#22c55e',qs:[
+    {q:'What types of Flows are available in Salesforce?',a:'There are 4 main Flow types: (1) Record-Triggered Flow — runs automatically when a record is created, updated, or deleted; (2) Screen Flow — guides users through a multi-step UI process; (3) Scheduled Flow — runs on a defined schedule against a batch of records; (4) Autolaunched Flow — runs in the background, typically called from Apex or another Flow.'},
+    {q:'What is the difference between Before Save and After Save in a Record-Triggered Flow?',a:'Before Save runs before the record is written to the database — it is faster and efficient for updating fields on the same record. After Save runs after the record is committed — use it when you need to create or update related records, send emails, or call external systems. Never use After Save to update the triggering record (causes extra DML).'},
+    {q:'What is bulkification and why does it matter in Flow?',a:'Bulkification means processing multiple records in a single transaction efficiently. In Flow, if you have a Get Records or DML operation inside a Loop, it runs once per record — causing governor limit issues at scale. The solution is to collect records into a Collection variable, then perform a single DML operation outside the loop.'},
+    {q:'How do you handle errors in a Flow?',a:'You add a Fault connector to any element that could fail (DML operations, Apex calls, external service calls). The Fault path handles the error gracefully — typically sending an admin notification email with the error message, or logging the failure. Without a Fault connector, the Flow fails silently with a generic error to the user.'},
+    {q:'When would you use a Subflow?',a:'A Subflow calls one Flow from another, enabling reusability. For example, if you have a common sequence of steps (like sending a notification email and creating a task) used in multiple Flows, extract it into a reusable Autolaunched Flow and call it as a Subflow. This follows the DRY principle and makes maintenance easier.'},
+  ]},
+  {cat:'Sales Cloud',color:'#f59e0b',qs:[
+    {q:'What is the Lead conversion process?',a:'Lead conversion creates up to 3 records simultaneously: a Contact (from the Lead person), an Account (from the Lead company), and optionally an Opportunity. Field mappings control which Lead fields carry over to each new record. The original Lead record is marked as Converted and becomes read-only. Custom Lead fields need manual mapping to appear on converted records.'},
+    {q:'What is Collaborative Forecasting?',a:'Collaborative Forecasting predicts revenue based on opportunities in the pipeline. Each opportunity\'s forecast category (Pipeline, Best Case, Commit, Closed) rolls up through the Role Hierarchy. Managers can view and override their team\'s forecasts. It is configured per fiscal period and relies on accurate Opportunity data — Stage, Amount, and Close Date.'},
+    {q:'What are Contact Roles on an Opportunity?',a:'Contact Roles define who is involved in a deal and their role in the buying decision — for example, Decision Maker, Economic Buyer, Champion, or Technical Evaluator. They link Contacts to Opportunities without making the Contact the primary owner. Contact Roles are important for reporting on deal influence and for identifying who to engage during the sales cycle.'},
+  ]},
+  {cat:'Service Cloud',color:'#f43f5e',qs:[
+    {q:'What is an Entitlement and how does it work?',a:'An Entitlement defines what level of support a customer is entitled to — for example, 24/7 phone support or a 4-hour response SLA. Entitlements attach to Accounts or Contacts. When a Case is created, the Entitlement Process starts Milestone timers automatically. If a Milestone is not completed on time, escalation actions trigger — like sending emails or changing priority.'},
+    {q:'What is Omni-Channel and why is it used?',a:'Omni-Channel is a routing framework that automatically assigns Cases (or other work items) to the right agent based on their availability, capacity, and skills. Agents set their Presence Status (Available, Busy, Away) and Omni-Channel routes work to them in real time. It replaces manual queue management and ensures no work items are missed or over-assigned.'},
+    {q:'What is Email-to-Case?',a:'Email-to-Case automatically creates a Case in Salesforce when a customer sends an email to a support address. Each reply from the customer or agent is captured as a Case Comment in the Case Feed, keeping the full conversation history on the record. It is configured in Setup under Email-to-Case settings with a routing address per support queue.'},
+  ]},
+  {cat:'SFMC',color:'#38c98a',qs:[
+    {q:'What is the difference between a List and a Data Extension in SFMC?',a:'Lists are simple, flat subscriber stores — easy to use but limited in structure. Data Extensions are flexible database tables with custom fields and relationships, suitable for complex data models. Lists are fine for small, simple sends. Data Extensions are required for segmentation, relational data, triggered sends, and any campaign involving custom subscriber attributes.'},
+    {q:'What is AMPscript and when do you use it?',a:'AMPscript is SFMC\'s proprietary scripting language used inside email content to personalise at the individual subscriber level. You use it to look up data extension values (LookupRows), conditionally show/hide content (IF/THEN), format dates and strings, and create dynamic content blocks. It runs server-side at send time for each subscriber.'},
+    {q:'What is Journey Builder used for?',a:'Journey Builder is SFMC\'s customer journey orchestration tool. It allows marketers to design multi-step, multi-channel journeys triggered by a customer action or data change — such as a welcome series, abandoned cart reminder, or re-engagement campaign. Contacts move through the journey based on their behaviour and decision split outcomes.'},
+  ]},
+];
+
+// ═══ CODING EXERCISES ═══
+const CODING=[
+  {id:1,tag:'SOQL',color:'#7c6af7',title:'Basic SOQL Query',difficulty:'Beginner',
+   description:'Write a SOQL query to retrieve all Accounts in the Technology industry with more than 500 employees, ordered by Name.',
+   code:`SELECT Id, Name, Industry, NumberOfEmployees
+FROM Account
+WHERE Industry = 'Technology'
+  AND NumberOfEmployees > 500
+ORDER BY Name ASC`,
+   task:'Challenge: Modify the query to also filter by BillingCountry = \'USA\' and limit to 10 results.',
+   explanation:'SOQL (Salesforce Object Query Language) is used to query Salesforce data. Always specify only the fields you need. Use WHERE to filter, ORDER BY to sort, and LIMIT to cap results.'},
+  {id:2,tag:'SOQL',color:'#7c6af7',title:'SOQL with Relationships',difficulty:'Beginner',
+   description:'Query all Contacts with their related Account name, where the Account is in the Financial Services industry.',
+   code:`SELECT Id, FirstName, LastName, Email,
+       Account.Name, Account.Industry
+FROM Contact
+WHERE Account.Industry = 'Financial Services'
+ORDER BY LastName ASC`,
+   task:'Challenge: Add a filter to only return Contacts who have an Email address (Email != null).',
+   explanation:'Use dot notation to traverse lookup/master-detail relationships in SOQL. Contact.Account.Name goes from Contact up to Account to get the Name field.'},
+  {id:3,tag:'SOQL',color:'#7c6af7',title:'Aggregate SOQL',difficulty:'Intermediate',
+   description:'Count the number of Opportunities per Stage for deals closing this year.',
+   code:`SELECT StageName, COUNT(Id) oppCount,
+       SUM(Amount) totalAmount
+FROM Opportunity
+WHERE CloseDate = THIS_YEAR
+  AND IsClosed = false
+GROUP BY StageName
+ORDER BY COUNT(Id) DESC`,
+   task:'Challenge: Modify to also include the average Amount per stage using AVG(Amount).',
+   explanation:'Aggregate functions (COUNT, SUM, MIN, MAX, AVG) with GROUP BY let you build report-like queries. Use date literals like THIS_YEAR, THIS_MONTH, LAST_N_DAYS:30 instead of hardcoded dates.'},
+  {id:4,tag:'Apex',color:'#22c55e',title:'Basic Apex Class',difficulty:'Beginner',
+   description:'Write an Apex class with a method that takes an Account Id and returns the total number of open Opportunities.',
+   code:`public class AccountHelper {
+    
+    public static Integer getOpenOpportunityCount(Id accountId) {
+        List<Opportunity> opps = [
+            SELECT Id
+            FROM Opportunity
+            WHERE AccountId = :accountId
+              AND IsClosed = false
+        ];
+        return opps.size();
+    }
+}`,
+   task:'Challenge: Modify to return the total Amount of open Opportunities instead of the count.',
+   explanation:'Apex is Salesforce\'s Java-like programming language. Use static methods for utility functions. Always use bind variables (:accountId) in SOQL to prevent SOQL injection and improve performance.'},
+  {id:5,tag:'Apex',color:'#22c55e',title:'Apex Trigger',difficulty:'Intermediate',
+   description:'Write a trigger that automatically sets the Description field on an Opportunity when it is created with Stage = "Closed Won".',
+   code:`trigger OpportunityTrigger on Opportunity (before insert, before update) {
+    
+    for (Opportunity opp : Trigger.new) {
+        if (opp.StageName == 'Closed Won' 
+            && String.isBlank(opp.Description)) {
+            opp.Description = 'Won on ' 
+                + Date.today().format() 
+                + ' - Auto-generated';
+        }
+    }
+}`,
+   task:'Challenge: Add logic to also set a custom field "Won_Date__c" to today\'s date when Stage = Closed Won.',
+   explanation:'Triggers run before or after DML operations. Before triggers can modify the record without an extra DML statement. Always loop through Trigger.new — never put SOQL or DML inside a loop.'},
+  {id:6,tag:'Apex',color:'#22c55e',title:'Apex with Governor Limits',difficulty:'Intermediate',
+   description:'Write a bulkified trigger handler that updates the Account\'s Description when any related Opportunity is Closed Won.',
+   code:`trigger OpportunityTrigger on Opportunity (after update) {
+    
+    // Collect Account Ids — no SOQL in loop
+    Set<Id> accountIds = new Set<Id>();
+    for (Opportunity opp : Trigger.new) {
+        Opportunity oldOpp = Trigger.oldMap.get(opp.Id);
+        if (opp.StageName == 'Closed Won' 
+            && oldOpp.StageName != 'Closed Won') {
+            accountIds.add(opp.AccountId);
+        }
+    }
+    
+    if (accountIds.isEmpty()) return;
+    
+    // Single SOQL query outside loop
+    List<Account> accounts = [
+        SELECT Id, Description 
+        FROM Account 
+        WHERE Id IN :accountIds
+    ];
+    
+    // Update in memory, single DML outside loop
+    for (Account acc : accounts) {
+        acc.Description = 'Has a Closed Won deal!';
+    }
+    update accounts; // Single DML statement
+}`,
+   task:'Challenge: Add logic to count how many Closed Won deals the Account has and include that in the Description.',
+   explanation:'Governor Limits: max 100 SOQL queries and 150 DML statements per transaction. Always collect Ids first, query once outside the loop, modify in memory, then do a single DML. This is called bulkification.'},
+  {id:7,tag:'LWC',color:'#f59e0b',title:'Basic LWC Component',difficulty:'Beginner',
+   description:'Create a Lightning Web Component that displays a greeting message with the user\'s name passed as a property.',
+   code:`<!-- greetingCard.html -->
+<template>
+    <lightning-card title="Welcome">
+        <div class="slds-p-around_medium">
+            <p>Hello, {name}!</p>
+            <p>Welcome to Salesforce.</p>
+        </div>
+    </lightning-card>
+</template>
+
+// greetingCard.js
+import { LightningElement, api } from 'lwc';
+
+export default class GreetingCard extends LightningElement {
+    @api name = 'User'; // Public property
+}`,
+   task:'Challenge: Add a button that shows an alert with the name when clicked.',
+   explanation:'LWC uses HTML templates with {property} bindings and JavaScript classes. @api makes a property public so parent components can pass values. The lightning-card is a base component from SLDS.'},
+  {id:8,tag:'LWC',color:'#f59e0b',title:'LWC with Wire Service',difficulty:'Intermediate',
+   description:'Create a component that retrieves and displays the current user\'s Account list using the Wire Service.',
+   code:`<!-- accountList.html -->
+<template>
+    <lightning-card title="My Accounts">
+        <template if:true={accounts.data}>
+            <ul class="slds-p-around_medium">
+                <template for:each={accounts.data} for:item="acc">
+                    <li key={acc.Id}>{acc.Name}</li>
+                </template>
+            </ul>
+        </template>
+        <template if:true={accounts.error}>
+            <p>Error loading accounts.</p>
+        </template>
+    </lightning-card>
+</template>
+
+// accountList.js
+import { LightningElement, wire } from 'lwc';
+import getAccounts from '@salesforce/apex/AccountController.getAccounts';
+
+export default class AccountList extends LightningElement {
+    @wire(getAccounts) accounts;
+}`,
+   task:'Challenge: Add a loading spinner while data is being fetched using if:false={accounts.data}.',
+   explanation:'The @wire decorator reactively calls Apex methods or UI API adapters. The result object has .data and .error properties. Use for:each to iterate over arrays in the template. Always handle both data and error states.'},
+  {id:9,tag:'LWC',color:'#f59e0b',title:'LWC Events',difficulty:'Intermediate',
+   description:'Create a child component that fires a custom event when a button is clicked, and a parent that listens and responds.',
+   code:`<!-- child.html -->
+<template>
+    <button onclick={handleClick}>Notify Parent</button>
+</template>
+
+// child.js
+import { LightningElement } from 'lwc';
+export default class Child extends LightningElement {
+    handleClick() {
+        const event = new CustomEvent('notify', {
+            detail: { message: 'Hello from child!' }
+        });
+        this.dispatchEvent(event);
+    }
+}
+
+<!-- parent.html -->
+<template>
+    <c-child onnotify={handleNotify}></c-child>
+    <p>{receivedMessage}</p>
+</template>
+
+// parent.js
+import { LightningElement, track } from 'lwc';
+export default class Parent extends LightningElement {
+    @track receivedMessage = '';
+    handleNotify(event) {
+        this.receivedMessage = event.detail.message;
+    }
+}`,
+   task:'Challenge: Pass the current timestamp in the event detail and display it in the parent.',
+   explanation:'LWC uses CustomEvent for child-to-parent communication. The child dispatches the event with dispatchEvent(). The parent listens using onEventName attribute on the child tag. event.detail carries the payload.'},
+  {id:10,tag:'Apex',color:'#22c55e',title:'Test Class',difficulty:'Intermediate',
+   description:'Write a test class for the AccountHelper class with proper test data setup.',
+   code:`@isTest
+public class AccountHelperTest {
+    
+    @TestSetup
+    static void setupTestData() {
+        Account acc = new Account(Name = 'Test Account');
+        insert acc;
+        
+        List<Opportunity> opps = new List<Opportunity>();
+        for (Integer i = 0; i < 3; i++) {
+            opps.add(new Opportunity(
+                Name = 'Test Opp ' + i,
+                AccountId = acc.Id,
+                StageName = 'Prospecting',
+                CloseDate = Date.today().addDays(30)
+            ));
+        }
+        insert opps;
+    }
+    
+    @isTest
+    static void testGetOpenOpportunityCount() {
+        Account acc = [SELECT Id FROM Account LIMIT 1];
+        
+        Test.startTest();
+        Integer count = AccountHelper.getOpenOpportunityCount(acc.Id);
+        Test.stopTest();
+        
+        System.assertEquals(3, count, 'Should return 3 open opportunities');
+    }
+}`,
+   task:'Challenge: Add a second test method that verifies count is 0 for an Account with no Opportunities.',
+   explanation:'Salesforce requires 75% code coverage for deployment. Use @TestSetup for shared data. Always call Test.startTest() and Test.stopTest() to reset governor limits. Use System.assertEquals() to verify results.'},
+];
+
+// ═══ STATE ═══
+let page='habits';
+let habitNav='habits';
+let learnNav='today';
+let timerInterval=null;
+let timerSeconds=1800; // 30 mins
+let timerRunning=false;
+let S={startDate:todayKey(),days:{},col:{},learnDone:{},learnSession:{},learnExpanded:{},prepDone:{},prepShown:{},codeExpanded:{},codeDone:{}};
 
 function todayKey(){return new Date().toISOString().split('T')[0]}
 function dKey(ago){const d=new Date();d.setDate(d.getDate()-ago);return d.toISOString().split('T')[0]}
-function load(){try{const r=localStorage.getItem('gainz2');if(r)S=JSON.parse(r)}catch(e){}}
-function save(){try{localStorage.setItem('gainz2',JSON.stringify(S))}catch(e){}}
-function score(k){if(!S.days[k])return 0;return Math.round(HABITS.filter(h=>S.days[k][h.id]).length/TOTAL*100)}
+function load(){try{const r=localStorage.getItem('gainz4');if(r)S=JSON.parse(r)}catch(e){}}
+function save(){try{localStorage.setItem('gainz4',JSON.stringify(S))}catch(e){}}
+
+// HABIT FUNCTIONS
+function score(k){if(!S.days[k])return 0;return Math.round(HABITS.filter(h=>S.days[k][h.id]).length/HTOTAL*100)}
 function streak(){let s=0,i=0;while(score(dKey(i))>=80&&i<200){s++;i++;}return s}
 function best(){let b=0,c=0;for(let i=180;i>=0;i--){score(dKey(i))>=80?b=Math.max(b,++c):c=0;}return b}
 function wavg(){let t=0;for(let i=0;i<7;i++)t+=score(dKey(i));return Math.round(t/7)}
 function mavg(){let t=0,c=0;for(let i=0;i<30;i++){const s=score(dKey(i));if(s>0){t+=s;c++;}}return c>0?Math.round(t/c):0}
-function dayNum(){const s=new Date(S.startDate),t=new Date();s.setHours(0,0,0,0);t.setHours(0,0,0,0);return Math.max(1,Math.floor((t-s)/86400000)+1)}
 function sc(p){return p>=90?'#22c55e':p>=70?'#f59e0b':p>=50?'#7c6af7':'#f43f5e'}
 function hstreak(id){let s=0,i=0;while(S.days[dKey(i)]&&S.days[dKey(i)][id]&&i<200){s++;i++;}return s}
 function toggle(id){const k=todayKey();if(!S.days[k])S.days[k]={};S.days[k][id]=!S.days[k][id];save();render()}
 function toggleCat(c){S.col[c]=!S.col[c];save();render()}
-function setNav(n){nav=n;document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',['habits','week','month'][i]===n));render()}
+function setHabitNav(n){habitNav=n;render()}
+
+// LEARN FUNCTIONS
+function getDayNum(){const s=new Date(S.startDate),t=new Date();s.setHours(0,0,0,0);t.setHours(0,0,0,0);return Math.max(1,Math.floor((t-s)/86400000)+1)}
+function getTodayTopic(){return CURRICULUM[(getDayNum()-1)%CURRICULUM.length]}
+function markDone(id){S.learnDone[id]=!S.learnDone[id];save();render()}
+function setSession(id,sess){S.learnSession[id]=sess;save();render()}
+function toggleLearnExpand(id){S.learnExpanded[id]=!S.learnExpanded[id];save();render()}
+function getLearnProgress(){return Math.round((Object.keys(S.learnDone).filter(k=>S.learnDone[k]).length/CURRICULUM.length)*100)}
+function setLearnNav(n){learnNav=n;render()}
+
+// TIMER FUNCTIONS
+function formatTime(s){const m=Math.floor(s/60);const sec=s%60;return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`}
+function startTimer(){if(timerRunning)return;timerRunning=true;timerInterval=setInterval(()=>{if(timerSeconds>0){timerSeconds--;const el=document.getElementById('timer-display');if(el)el.textContent=formatTime(timerSeconds);}else{clearInterval(timerInterval);timerRunning=false;}},1000)}
+function pauseTimer(){clearInterval(timerInterval);timerRunning=false;}
+function resetTimer(secs){clearInterval(timerInterval);timerRunning=false;timerSeconds=secs;const el=document.getElementById('timer-display');if(el)el.textContent=formatTime(timerSeconds);}
+function togglePrepDone(catIdx,qIdx){const key=catIdx+'_'+qIdx;S.prepDone[key]=!S.prepDone[key];save();render()}
+function togglePrepShown(catIdx,qIdx){const key=catIdx+'_'+qIdx;S.prepShown[key]=!S.prepShown[key];save();render()}
+function toggleCodeExpand(id){S.codeExpanded[id]=!S.codeExpanded[id];save();render()}
+function toggleCodeDone(id){S.codeDone[id]=!S.codeDone[id];save();render()}
+
+// ═══ RENDER ═══
+let statsTab='overview';
+let statsCharts={};
+
+function destroyChart(id){if(statsCharts[id]){statsCharts[id].destroy();delete statsCharts[id];}}
+
+function setStatsTab(t){
+  statsTab=t;
+  document.querySelectorAll('.stats-tab').forEach((b,i)=>b.classList.toggle('active',['overview','habits','learning','streaks'][i]===t));
+  renderStatsContent();
+}
+
+function scColor(p){return p>=90?'#22c55e':p>=70?'#f59e0b':p>=50?'#7c6af7':'#f43f5e';}
+
+function getDayScoreStats(k){
+  if(!S.days||!S.days[k])return 0;
+  return Math.round(HABITS.filter(h=>S.days[k][h.id]).length/HTOTAL*100);
+}
+function dKeyStats(ago){const d=new Date();d.setDate(d.getDate()-ago);return d.toISOString().split('T')[0];}
+function getStreakStats(){let s=0,i=0;while(getDayScoreStats(dKeyStats(i))>=80&&i<200){s++;i++;}return s;}
+function getBestStreakStats(){let b=0,c=0;for(let i=180;i>=0;i--){getDayScoreStats(dKeyStats(i))>=80?b=Math.max(b,++c):c=0;}return b;}
+function getAvgStats(days){let t=0,c=0;for(let i=0;i<days;i++){const s=getDayScoreStats(dKeyStats(i));if(s>0){t+=s;c++;}}return c>0?Math.round(t/c):0;}
+function getLearnPctStats(){if(!S.learnDone)return 0;return Math.round(Object.keys(S.learnDone).filter(k=>S.learnDone[k]).length/CURRICULUM.length*100);}
+function getPrepPctStats(){if(!S.prepDone)return 0;return Math.round(Object.keys(S.prepDone).filter(k=>S.prepDone[k]).length/36*100);}
+function getCodePctStats(){if(!S.codeDone)return 0;return Math.round(Object.keys(S.codeDone).filter(k=>S.codeDone[k]).length/CODING.length*100);}
+function getActiveDaysStats(){if(!S.days)return 0;return Object.keys(S.days).filter(k=>Object.values(S.days[k]).some(v=>v)).length;}
+
+function renderStatsContent(){
+  const container=document.getElementById('stats-content');
+  if(!container)return;
+  const t=statsTab;
+
+  if(t==='overview'){
+    const streak=getStreakStats();const best=getBestStreakStats();const avg30=getAvgStats(30);const active=getActiveDaysStats();
+    const lp=getLearnPctStats();const pp=getPrepPctStats();const cp=getCodePctStats();
+    const labels90=[],scores90=[];
+    for(let i=89;i>=0;i--){
+      const d=new Date();d.setDate(d.getDate()-i);
+      labels90.push(i%14===0?d.toLocaleDateString('en',{month:'short',day:'numeric'}):'');
+      scores90.push(getDayScoreStats(dKeyStats(i)));
+    }
+    container.innerHTML=`
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-card-label">Current streak</div><div class="stat-card-val" style="color:var(--amber)">${streak}d</div><div class="stat-card-sub">Best: ${best} days</div></div>
+        <div class="stat-card"><div class="stat-card-label">30-day avg</div><div class="stat-card-val" style="color:${scColor(avg30)}">${avg30}%</div><div class="stat-card-sub">Habit completion</div></div>
+        <div class="stat-card"><div class="stat-card-label">Active days</div><div class="stat-card-val">${active}</div><div class="stat-card-sub">All time check-ins</div></div>
+        <div class="stat-card"><div class="stat-card-label">Learning</div><div class="stat-card-val" style="color:var(--accent)">${lp}%</div><div class="stat-card-sub">Curriculum done</div></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">90-day habit score</div>
+        <div class="chart-card-sub">Daily completion % over last 3 months</div>
+        <div style="position:relative;height:160px"><canvas id="sc-line"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">All-time productivity</div>
+        <div class="chart-card-sub">Progress across all tracks</div>
+        <div class="chart-legend">
+          <span><span class="leg-sq" style="background:#7c6af7"></span>Habits</span>
+          <span><span class="leg-sq" style="background:#22c55e"></span>Curriculum</span>
+          <span><span class="leg-sq" style="background:#f59e0b"></span>Interview</span>
+          <span><span class="leg-sq" style="background:#f43f5e"></span>Coding</span>
+        </div>
+        <div style="position:relative;height:140px"><canvas id="sc-bar"></canvas></div>
+      </div>`;
+    setTimeout(()=>{
+      destroyChart('sc-line');
+      statsCharts['sc-line']=new Chart(document.getElementById('sc-line'),{type:'line',data:{labels:labels90,datasets:[{data:scores90,borderColor:'#7c6af7',backgroundColor:'rgba(124,106,247,0.08)',fill:true,tension:0.3,pointRadius:0,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y+'%'}}},scales:{x:{grid:{display:false},ticks:{color:'#888',font:{size:10}}},y:{min:0,max:100,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#888',font:{size:10},callback:v=>v+'%'}}}}});
+      destroyChart('sc-bar');
+      statsCharts['sc-bar']=new Chart(document.getElementById('sc-bar'),{type:'bar',data:{labels:['Habits','Curriculum','Interview','Coding'],datasets:[{data:[avg30,lp,pp,cp],backgroundColor:['#7c6af7','#22c55e','#f59e0b','#f43f5e'],borderRadius:6,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.x+'%'}}},scales:{x:{min:0,max:100,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#888',font:{size:10},callback:v=>v+'%'}},y:{grid:{display:false},ticks:{color:'#888',font:{size:11}}}}}});
+    },50);
+
+  } else if(t==='habits'){
+    const cats=[...new Set(HABITS.map(h=>h.cat))];
+    const catScores=cats.map(cat=>{
+      const ids=HABITS.filter(h=>h.cat===cat).map(h=>h.id);let total=0,count=0;
+      for(let i=0;i<30;i++){const k=dKeyStats(i);if(S.days&&S.days[k]){const done=ids.filter(id=>S.days[k][id]).length;total+=Math.round(done/ids.length*100);count++;}}
+      return count>0?Math.round(total/count):0;
+    });
+    const wkL=[],wkD=[];
+    for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);wkL.push(['Su','Mo','Tu','We','Th','Fr','Sa'][d.getDay()]);wkD.push(getDayScoreStats(dKeyStats(i)));}
+    container.innerHTML=`
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-card-label">7-day avg</div><div class="stat-card-val" style="color:${scColor(getAvgStats(7))}">${getAvgStats(7)}%</div></div>
+        <div class="stat-card"><div class="stat-card-label">30-day avg</div><div class="stat-card-val" style="color:${scColor(getAvgStats(30))}">${getAvgStats(30)}%</div></div>
+        <div class="stat-card"><div class="stat-card-label">Best streak</div><div class="stat-card-val" style="color:var(--amber)">${getBestStreakStats()}d</div></div>
+        <div class="stat-card"><div class="stat-card-label">Active days</div><div class="stat-card-val">${getActiveDaysStats()}</div></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">This week — daily scores</div>
+        <div style="position:relative;height:150px"><canvas id="sc-week"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">30-day avg by category</div>
+        <div class="chart-legend">${cats.map(c=>`<span><span class="leg-sq" style="background:${HCOLORS[c]}"></span>${c.split(' ')[0]}</span>`).join('')}</div>
+        <div style="position:relative;height:180px"><canvas id="sc-cats"></canvas></div>
+      </div>`;
+    setTimeout(()=>{
+      destroyChart('sc-week');
+      statsCharts['sc-week']=new Chart(document.getElementById('sc-week'),{type:'bar',data:{labels:wkL,datasets:[{data:wkD,backgroundColor:wkD.map(s=>s>=80?'#22c55e':s>=50?'#f59e0b':s>0?'#f43f5e':'#2a2a3a'),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y+'%'}}},scales:{x:{grid:{display:false},ticks:{color:'#888',font:{size:12}}},y:{min:0,max:100,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#888',font:{size:10},callback:v=>v+'%'}}}}});
+      destroyChart('sc-cats');
+      statsCharts['sc-cats']=new Chart(document.getElementById('sc-cats'),{type:'bar',data:{labels:cats.map(c=>c.split(' ')[0]),datasets:[{data:catScores,backgroundColor:cats.map(c=>HCOLORS[c]),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y+'%'}}},scales:{x:{grid:{display:false},ticks:{color:'#888',font:{size:10},maxRotation:30}},y:{min:0,max:100,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#888',font:{size:10},callback:v=>v+'%'}}}}});
+    },50);
+
+  } else if(t==='learning'){
+    const ld=S.learnDone?Object.keys(S.learnDone).filter(k=>S.learnDone[k]).length:0;
+    const pd=S.prepDone?Object.keys(S.prepDone).filter(k=>S.prepDone[k]).length:0;
+    const cd=S.codeDone?Object.keys(S.codeDone).filter(k=>S.codeDone[k]).length:0;
+    const lp=getLearnPctStats(),pp=getPrepPctStats(),cp=getCodePctStats();
+    container.innerHTML=`
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-card-label">Curriculum</div><div class="stat-card-val" style="color:var(--accent)">${ld}/${CURRICULUM.length}</div><div class="stat-card-sub">${lp}% done</div></div>
+        <div class="stat-card"><div class="stat-card-label">Interview Q's</div><div class="stat-card-val" style="color:var(--amber)">${pd}/${INTERVIEW_PREP.reduce((a,c)=>a+c.qs.length,0)}</div><div class="stat-card-sub">${pp}% done</div></div>
+        <div class="stat-card"><div class="stat-card-label">Coding</div><div class="stat-card-val" style="color:var(--green)">${cd}/${CODING.length}</div><div class="stat-card-sub">${cp}% done</div></div>
+        <div class="stat-card"><div class="stat-card-label">Overall</div><div class="stat-card-val" style="color:var(--accent)">${Math.round((lp+pp+cp)/3)}%</div><div class="stat-card-sub">Average progress</div></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Learning progress breakdown</div>
+        <div class="chart-legend">
+          <span><span class="leg-sq" style="background:#7c6af7"></span>Curriculum</span>
+          <span><span class="leg-sq" style="background:#f59e0b"></span>Interview</span>
+          <span><span class="leg-sq" style="background:#22c55e"></span>Coding</span>
+        </div>
+        <div style="position:relative;height:180px"><canvas id="sc-learn"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Track completion</div>
+        <div style="position:relative;height:130px"><canvas id="sc-prog"></canvas></div>
+      </div>`;
+    setTimeout(()=>{
+      const itotal=INTERVIEW_PREP.reduce((a,c)=>a+c.qs.length,0);
+      destroyChart('sc-learn');
+      statsCharts['sc-learn']=new Chart(document.getElementById('sc-learn'),{type:'doughnut',data:{labels:['Curriculum done','Curriculum left','Interview done','Interview left','Coding done','Coding left'],datasets:[{data:[ld,CURRICULUM.length-ld,pd,itotal-pd,cd,CODING.length-cd],backgroundColor:['#7c6af7','rgba(124,106,247,0.15)','#f59e0b','rgba(245,158,11,0.15)','#22c55e','rgba(34,197,94,0.15)'],borderWidth:0,spacing:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.label+': '+ctx.parsed}}}}});
+      destroyChart('sc-prog');
+      statsCharts['sc-prog']=new Chart(document.getElementById('sc-prog'),{type:'bar',data:{labels:['Curriculum','Interview','Coding'],datasets:[{data:[lp,pp,cp],backgroundColor:['#7c6af7','#f59e0b','#22c55e'],borderRadius:6,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.x+'%'}}},scales:{x:{min:0,max:100,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#888',font:{size:10},callback:v=>v+'%'}},y:{grid:{display:false},ticks:{color:'#888',font:{size:11}}}}}});
+    },50);
+
+  } else if(t==='streaks'){
+    const streak=getStreakStats();const best=getBestStreakStats();
+    const monthData=[];
+    for(let i=29;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);monthData.push({score:getDayScoreStats(dKeyStats(i)),day:d.getDate()});}
+    const wkAvgs=[],wkLbls=[];
+    for(let w=11;w>=0;w--){let t=0,c=0;for(let d=0;d<7;d++){const s=getDayScoreStats(dKeyStats(w*7+d));if(s>0){t+=s;c++;}}const st=new Date();st.setDate(st.getDate()-(w*7+6));wkLbls.push(st.toLocaleDateString('en',{month:'short',day:'numeric'}));wkAvgs.push(c>0?Math.round(t/c):0);}
+    const cellBg=s=>s>=90?'#22c55e':s>=70?'#f59e0b':s>=50?'#7c6af7':s>0?'#f43f5e':'rgba(128,128,128,0.12)';
+    container.innerHTML=`
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-card-label">Current streak</div><div class="stat-card-val" style="color:var(--amber)">${streak}d</div></div>
+        <div class="stat-card"><div class="stat-card-label">Best streak</div><div class="stat-card-val" style="color:var(--amber)">${best}d</div></div>
+        <div class="stat-card"><div class="stat-card-label">Perfect days (30d)</div><div class="stat-card-val" style="color:var(--green)">${monthData.filter(d=>d.score===100).length}</div></div>
+        <div class="stat-card"><div class="stat-card-label">Strong days (30d)</div><div class="stat-card-val" style="color:var(--accent)">${monthData.filter(d=>d.score>=80).length}</div></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">30-day heatmap</div>
+        <div class="chart-legend">
+          <span><span class="leg-sq" style="background:#22c55e"></span>90%+</span>
+          <span><span class="leg-sq" style="background:#f59e0b"></span>70%+</span>
+          <span><span class="leg-sq" style="background:#7c6af7"></span>50%+</span>
+          <span><span class="leg-sq" style="background:#f43f5e"></span>Any</span>
+        </div>
+        <div class="hm-grid">${monthData.map(d=>`<div class="hm-cell" style="background:${cellBg(d.score)}">${d.day}</div>`).join('')}</div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">12-week rolling average</div>
+        <div class="chart-card-sub">Weekly habit completion trend</div>
+        <div style="position:relative;height:160px"><canvas id="sc-weekly"></canvas></div>
+      </div>`;
+    setTimeout(()=>{
+      destroyChart('sc-weekly');
+      statsCharts['sc-weekly']=new Chart(document.getElementById('sc-weekly'),{type:'line',data:{labels:wkLbls,datasets:[{data:wkAvgs,borderColor:'#7c6af7',backgroundColor:'rgba(124,106,247,0.1)',fill:true,tension:0.4,pointRadius:4,pointBackgroundColor:'#7c6af7',borderWidth:2,pointHoverRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'Avg: '+ctx.parsed.y+'%'}}},scales:{x:{grid:{display:false},ticks:{color:'#888',font:{size:9},maxRotation:35,autoSkip:false}},y:{min:0,max:100,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#888',font:{size:10},callback:v=>v+'%'}}}}});
+    },50);
+  }
+}
+
+function renderStats(){
+  const m=document.getElementById('main');
+  m.innerHTML=`
+    <div style="margin:12px;background:var(--card);border-radius:20px;padding:16px;border:0.5px solid var(--border)">
+      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px">All-time productivity</div>
+      <div style="font-size:36px;font-weight:900;color:var(--accent);line-height:1">Dashboard</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">Your complete check-in history and progress graphs</div>
+    </div>
+    <div style="margin:0 12px 10px">
+      <div class="stats-tab-row">
+        <button class="stats-tab active" onclick="setStatsTab('overview')">Overview</button>
+        <button class="stats-tab" onclick="setStatsTab('habits')">Habits</button>
+        <button class="stats-tab" onclick="setStatsTab('learning')">Learning</button>
+        <button class="stats-tab" onclick="setStatsTab('streaks')">Streaks</button>
+      </div>
+      <div id="stats-content"></div>
+    </div>`;
+  statsTab='overview';
+  renderStatsContent();
+}
+
+function setPage(p){
+  page=p;
+  clearInterval(timerInterval);timerRunning=false;
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',['habits','learn','interview','coding','stats'][i]===p));
+  const subs={habits:'Consistency Challenge',learn:'6-Month Salesforce Journey',interview:'30-Min Interview Prep',coding:'1-Hr Coding Mastery',stats:'Productivity Dashboard'};
+  document.getElementById('header-sub').textContent=subs[p];
+  render();
+}
 
 function render(){
+  if(page==='habits') renderHabits();
+  else if(page==='learn') renderLearn();
+  else if(page==='interview') renderInterview();
+  else if(page==='coding') renderCoding();
+  else if(page==='stats') renderStats();
+}
+
+function renderHabits(){
   const k=todayKey();
-  const ts=score(k);
-  const td=S.days[k]?HABITS.filter(h=>S.days[k][h.id]).length:0;
-  const str=streak();const bt=best();const wa=wavg();const ma=mavg();const dn=dayNum();
+  const ts=score(k);const td=S.days[k]?HABITS.filter(h=>S.days[k][h.id]).length:0;
+  const str=streak();const bt=best();const wa=wavg();const ma=mavg();
   const nm=MILESTONES.find(m=>m>str)||180;
   let h='';
 
   h+=`<div class="dashboard">
     <div class="dash-row">
       <div class="dash-main">
-        <div class="dash-label">Day ${dn} · Consistency Challenge</div>
+        <div class="dash-label">Day ${getDayNum()} · Consistency Challenge</div>
         <div class="dash-score" style="color:${sc(ts)}">${ts}%</div>
-        <div class="dash-sub">Today's score · ${td}/${TOTAL} done</div>
+        <div class="dash-sub">Today's score · ${td}/${HTOTAL} done</div>
         <div class="score-track"><div class="score-fill" style="width:${ts}%;background:${sc(ts)}"></div></div>
       </div>
       <div class="dash-right">
@@ -182,17 +801,16 @@ function render(){
   h+=`</div>`;
 
   h+=`<div class="switcher">
-    <button class="sw-btn ${nav==='habits'?'active':''}" onclick="setNav('habits')">Today</button>
-    <button class="sw-btn ${nav==='week'?'active':''}" onclick="setNav('week')">Week</button>
-    <button class="sw-btn ${nav==='month'?'active':''}" onclick="setNav('month')">Month</button>
+    <button class="sw-btn ${habitNav==='habits'?'active':''}" onclick="setHabitNav('habits')">Today</button>
+    <button class="sw-btn ${habitNav==='week'?'active':''}" onclick="setHabitNav('week')">Week</button>
+    <button class="sw-btn ${habitNav==='month'?'active':''}" onclick="setHabitNav('month')">Month</button>
   </div>`;
 
-  if(nav==='week'){
+  if(habitNav==='week'){
     const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     h+=`<div class="card"><div class="card-title">Weekly Performance</div><div class="week-row">`;
     for(let i=6;i>=0;i--){
-      const d=new Date();d.setDate(d.getDate()-i);
-      const dk=d.toISOString().split('T')[0];
+      const d=new Date();d.setDate(d.getDate()-i);const dk=d.toISOString().split('T')[0];
       const s=score(dk);const col=s>0?sc(s):'#2a2a3a';const isT=i===0;
       h+=`<div class="wday"><div class="wscore" style="color:${s>0?col:'#6b6b8a'}">${s>0?s+'%':'—'}</div>
         <div class="wbar-bg"><div class="wbar-fill" style="height:${s}%;background:${col}"></div></div>
@@ -201,11 +819,10 @@ function render(){
     h+=`</div><div class="wsummary">Week average: <strong style="color:${sc(wa)}">${wa}%</strong></div></div>`;
   }
 
-  if(nav==='month'){
+  if(habitNav==='month'){
     h+=`<div class="card"><div class="card-title">30-Day Heatmap</div><div class="mgrid">`;
     for(let i=29;i>=0;i--){
-      const d=new Date();d.setDate(d.getDate()-i);
-      const dk=d.toISOString().split('T')[0];const s=score(dk);
+      const d=new Date();d.setDate(d.getDate()-i);const dk=d.toISOString().split('T')[0];const s=score(dk);
       const bg=s>=90?'#22c55e':s>=70?'#f59e0b':s>=50?'#7c6af7':s>0?'#f43f5e':'#1a1a24';
       h+=`<div class="mcell ${i===0?'tod':''}" style="background:${bg}">${d.getDate()}</div>`;
     }
@@ -214,16 +831,36 @@ function render(){
       <div class="leg-item"><div class="leg-dot" style="background:#f59e0b"></div>70%+</div>
       <div class="leg-item"><div class="leg-dot" style="background:#7c6af7"></div>50%+</div>
       <div class="leg-item"><div class="leg-dot" style="background:#f43f5e"></div>Any</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#1a1a24"></div>None</div>
     </div><div class="mavg">Month average: <strong style="color:${sc(ma)}">${ma}%</strong></div></div>`;
   }
 
-  if(nav==='habits'){
-    CATS.forEach(cat=>{
-      const ch=HABITS.filter(h=>h.cat===cat);
-      const col=COLORS[cat];
-      const done=ch.filter(h=>S.days[k]&&S.days[k][h.id]).length;
-      const open=!S.col[cat];
+  if(habitNav==='habits'){
+    // Today's workout banner
+    const dow=new Date().getDay();
+    const wp=WORKOUT_PLANS[dow];
+    const showWkt=S.wktExpanded!==false;
+    h+=`<div class="workout-banner" onclick="toggleWorkout()">
+      <div class="workout-banner-top">
+        <span class="workout-day-badge">${wp.day}</span>
+        <span class="workout-type">💪 ${wp.type}</span>
+        <span style="margin-left:auto;font-size:10px;color:var(--muted)">${showWkt?'▲':'▼'}</span>
+      </div>
+      ${showWkt?`<div class="workout-exercises">${wp.exercises.map(e=>`<div class="ex-row"><span class="ex-name">${e.name}</span><span class="ex-sets">${e.sets}</span></div>`).join('')}</div>`:''}
+    </div>`;
+
+    // Workout log
+    const logs=S.workoutLogs||[];
+    const recentLogs=logs.slice(-5).reverse();
+    h+=`<div class="log-form">
+      <div class="log-form-title">📝 Workout log</div>
+      ${recentLogs.length>0?`<div class="log-entries">${recentLogs.map(l=>`<div class="log-entry"><span class="log-date">${l.date}</span><span class="log-text">${l.note}</span></div>`).join('')}</div>`:''}
+      <textarea class="log-input" id="workout-note" rows="2" placeholder="How was today's workout? (weight, reps, how you felt...)"></textarea>
+      <button class="log-save-btn" onclick="saveWorkoutLog()">Save today's log</button>
+    </div>`;
+
+    HCATS.forEach(cat=>{
+      const ch=HABITS.filter(h=>h.cat===cat);const col=HCOLORS[cat];
+      const done=ch.filter(h=>S.days[k]&&S.days[k][h.id]).length;const open=!S.col[cat];
       h+=`<div class="cat-card">
         <div class="cat-hdr" onclick="toggleCat('${cat}')">
           <div class="cat-bar" style="background:${col}"></div>
@@ -232,8 +869,7 @@ function render(){
           <div class="cat-chev ${open?'open':''}">▼</div>
         </div>`;
       if(open){ch.forEach(hb=>{
-        const on=!!(S.days[k]&&S.days[k][hb.id]);
-        const hs=hstreak(hb.id);
+        const on=!!(S.days[k]&&S.days[k][hb.id]);const hs=hstreak(hb.id);
         h+=`<div class="hrow" onclick="toggle(${hb.id})" style="${on?'background:'+col+'15':''}">
           <div class="chk ${on?'on':''}" style="${on?'background:'+col:''}"><span class="chkmark">✓</span></div>
           <span class="hemoji">${hb.emoji}</span>
@@ -243,16 +879,230 @@ function render(){
       });}
       h+=`</div>`;
     });
-
-    const msg=ts===100?'🏆 Perfect day. You showed up completely. Consistency is the real flex.':ts>=80?'💪 Strong day. Almost there — finish what you started.':ts>=50?'📈 Halfway there. Every habit compounds over 6 months.':'🎯 Your system is ready. Small daily improvements create staggering results.';
+    const msg=ts===100?'🏆 Perfect day. Consistency is the real flex.':ts>=80?'💪 Strong day. Almost there!':ts>=50?'📈 Halfway there. Keep going!':'🎯 Your system is ready. Start now!';
     h+=`<div class="note">${msg}</div>`;
   }
+  document.getElementById('main').innerHTML=h;
+}
 
+function toggleWorkout(){S.wktExpanded=S.wktExpanded===false?true:false;save();render();}
+
+function saveWorkoutLog(){
+  const note=document.getElementById('workout-note');
+  if(!note||!note.value.trim())return;
+  if(!S.workoutLogs)S.workoutLogs=[];
+  const d=new Date();
+  const dow=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
+  const dateStr=dow+' '+d.toLocaleDateString('en',{day:'numeric',month:'short',year:'numeric'});
+  S.workoutLogs.push({date:dateStr,note:note.value.trim()});
+  if(S.workoutLogs.length>50)S.workoutLogs=S.workoutLogs.slice(-50);
+  save();render();
+}
+
+function renderLearn(){
+  const todayTopic=getTodayTopic();
+  const progress=getLearnProgress();
+  const dn=getDayNum();
+  let h='';
+
+  h+=`<div class="learn-header">
+    <div class="dash-label">6-Month Salesforce Journey</div>
+    <div class="learn-day">Day ${dn}</div>
+    <div class="learn-meta">Today: <strong style="color:var(--accent)">${todayTopic.topic}</strong><br><span style="color:var(--muted)">${todayTopic.phase} · Week ${todayTopic.week}</span></div>
+    <div class="learn-progress"><div class="learn-prog-fill" style="width:${progress}%"></div></div>
+    <div class="learn-prog-label">${Object.keys(S.learnDone).filter(k=>S.learnDone[k]).length}/${CURRICULUM.length} topics completed · ${progress}%</div>
+  </div>`;
+
+  h+=`<div class="switcher">
+    <button class="sw-btn ${learnNav==='today'?'active':''}" onclick="setLearnNav('today')">Today</button>
+    <button class="sw-btn ${learnNav==='all'?'active':''}" onclick="setLearnNav('all')">All Topics</button>
+  </div>`;
+
+  if(learnNav==='today'){
+    const t=todayTopic;const sess=S.learnSession[t.id]||'learn';const done=S.learnDone[t.id];
+    h+=`<div style="margin:0 12px 12px">
+      <div class="topic-card" style="border-color:${PHASE_COLORS[t.phase]}44">
+        <div style="padding:14px;border-bottom:0.5px solid var(--border)">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span class="week-badge" style="background:${PHASE_COLORS[t.phase]}22;color:${PHASE_COLORS[t.phase]}">${t.phase}</span>
+            <span style="font-size:11px;color:var(--muted)">Week ${t.week} · ${t.tech}</span>
+          </div>
+          <div style="font-size:18px;font-weight:700;margin-bottom:4px">${t.topic}</div>
+        </div>
+        <div style="padding:12px">
+          <div class="session-tabs">
+            <button class="sess-btn ${sess==='learn'?'active':''}" onclick="setSession(${t.id},'learn')">📖 Learn</button>
+            <button class="sess-btn ${sess==='practice'?'active':''}" onclick="setSession(${t.id},'practice')">⚡ Practice</button>
+            <button class="sess-btn ${sess==='interview'?'active':''}" onclick="setSession(${t.id},'interview')">🎯 Interview</button>
+          </div>`;
+    if(sess==='learn'){
+      h+=`<div class="section-title">Key Concepts</div>`;
+      t.concepts.forEach(c=>{h+=`<div class="concept-item"><div class="concept-dot"></div><div class="concept-text">${c}</div></div>`;});
+      if(t.resource) h+=`<div class="resource-box">📚 ${t.resource}</div>`;
+    }
+    if(sess==='practice') h+=`<div class="section-title">Practice Task</div><div class="practice-box">${t.practice}</div>`;
+    if(sess==='interview'){
+      h+=`<div class="section-title">Interview Questions</div>`;
+      t.interviews.forEach((q,i)=>{h+=`<div class="interview-item"><span style="color:var(--accent);font-weight:700;font-size:13px;margin-right:6px">Q${i+1}.</span><span style="font-size:13px;line-height:1.5">${q}</span></div>`;});
+    }
+    h+=`<button class="mark-done-btn ${done?'done':''}" onclick="markDone(${t.id})">${done?'✓ Completed Today':'Mark as Done'}</button>
+        </div></div></div>`;
+  }
+
+  if(learnNav==='all'){
+    PHASES.forEach(phase=>{
+      const pt=CURRICULUM.filter(t=>t.phase===phase);const col=PHASE_COLORS[phase];
+      const doneCnt=pt.filter(t=>S.learnDone[t.id]).length;
+      h+=`<div class="phase-section"><div class="phase-label" style="color:${col}">● ${phase} <span style="color:var(--muted);font-weight:400">${doneCnt}/${pt.length}</span></div>`;
+      pt.forEach(t=>{
+        const done=S.learnDone[t.id];const open=S.learnExpanded[t.id];const sess=S.learnSession[t.id]||'learn';
+        h+=`<div class="topic-card">
+          <div class="topic-hdr" onclick="toggleLearnExpand(${t.id})">
+            <div class="topic-num" style="background:${col}22;color:${col}">${t.id}</div>
+            <div class="topic-info">
+              <div class="topic-title" style="${done?'text-decoration:line-through;color:var(--muted)':''}">${t.topic}</div>
+              <div class="topic-sub">Week ${t.week} · ${t.tech}</div>
+            </div>
+            <div class="topic-done" style="background:${done?'rgba(34,197,94,0.15)':'var(--bg3)'};color:${done?'#22c55e':'var(--muted)'}">${done?'✓':'Pending'}</div>
+            <div class="topic-chev ${open?'open':''}">▼</div>
+          </div>`;
+        if(open){
+          h+=`<div class="topic-body">
+            <div class="session-tabs">
+              <button class="sess-btn ${sess==='learn'?'active':''}" onclick="setSession(${t.id},'learn');event.stopPropagation()">📖 Learn</button>
+              <button class="sess-btn ${sess==='practice'?'active':''}" onclick="setSession(${t.id},'practice');event.stopPropagation()">⚡ Practice</button>
+              <button class="sess-btn ${sess==='interview'?'active':''}" onclick="setSession(${t.id},'interview');event.stopPropagation()">🎯 Interview</button>
+            </div>`;
+          if(sess==='learn'){h+=`<div class="section-title">Key Concepts</div>`;t.concepts.forEach(c=>{h+=`<div class="concept-item"><div class="concept-dot"></div><div class="concept-text">${c}</div></div>`;});if(t.resource)h+=`<div class="resource-box">📚 ${t.resource}</div>`;}
+          if(sess==='practice') h+=`<div class="section-title">Practice Task</div><div class="practice-box">${t.practice}</div>`;
+          if(sess==='interview'){h+=`<div class="section-title">Interview Questions</div>`;t.interviews.forEach((q,i)=>{h+=`<div class="interview-item"><span style="color:var(--accent);font-weight:700;font-size:13px;margin-right:6px">Q${i+1}.</span><span style="font-size:13px">${q}</span></div>`;});}
+          h+=`<button class="mark-done-btn ${done?'done':''}" onclick="markDone(${t.id});event.stopPropagation()">${done?'✓ Completed':'Mark as Done'}</button></div>`;
+        }
+        h+=`</div>`;
+      });
+      h+=`</div>`;
+    });
+  }
+  document.getElementById('main').innerHTML=h;
+}
+
+function renderInterview(){
+  const totalQ=INTERVIEW_PREP.reduce((a,c)=>a+c.qs.length,0);
+  const doneQ=Object.keys(S.prepDone).filter(k=>S.prepDone[k]).length;
+  let h='';
+
+  h+=`<div class="prep-header">
+    <div class="dash-label">Daily Interview Prep</div>
+    <div class="prep-title">30 Min</div>
+    <div class="prep-sub">Practice ${totalQ} Salesforce interview questions across ${INTERVIEW_PREP.length} categories · ${doneQ}/${totalQ} answered</div>
+    <div class="timer-box">
+      <div class="timer-display" id="timer-display">${formatTime(timerSeconds)}</div>
+      <div class="timer-label">Session timer — aim for 30 minutes</div>
+      <div class="timer-btns">
+        <button class="timer-btn" style="background:var(--green);color:#fff" onclick="startTimer()">▶ Start</button>
+        <button class="timer-btn" style="background:var(--bg2);color:var(--text)" onclick="pauseTimer()">⏸ Pause</button>
+        <button class="timer-btn" style="background:var(--bg2);color:var(--text)" onclick="resetTimer(1800)">↺ Reset</button>
+      </div>
+    </div>
+    <div class="score-track"><div class="score-fill" style="width:${Math.round(doneQ/totalQ*100)}%;background:var(--coral)"></div></div>
+    <div style="font-size:11px;color:var(--muted);margin-top:6px">${Math.round(doneQ/totalQ*100)}% complete</div>
+  </div>`;
+
+  INTERVIEW_PREP.forEach((cat,ci)=>{
+    const catDone=cat.qs.filter((_,qi)=>S.prepDone[ci+'_'+qi]).length;
+    h+=`<div class="prep-card">
+      <div class="prep-cat-hdr" onclick="toggleCat('prep_'+${ci})">
+        <div class="cat-bar" style="background:${cat.color}"></div>
+        <div class="cat-title" style="color:${cat.color}">${cat.cat}</div>
+        <div class="cat-sc">${catDone}/${cat.qs.length}</div>
+        <div class="cat-chev ${!S.col['prep_'+ci]?'open':''}">▼</div>
+      </div>`;
+    if(!S.col['prep_'+ci]){
+      cat.qs.forEach((q,qi)=>{
+        const done=S.prepDone[ci+'_'+qi];const shown=S.prepShown[ci+'_'+qi];
+        h+=`<div class="prep-q-row">
+          <div style="display:flex;align-items:flex-start;gap:8px">
+            <div class="chk ${done?'on':''}" style="${done?'background:'+cat.color+';border-color:'+cat.color:'border-color:'+cat.color};flex-shrink:0;margin-top:2px"><span class="chkmark">✓</span></div>
+            <div style="flex:1">
+              <div class="prep-q">${q.q}</div>
+              <div class="prep-a ${shown?'show':''}">${q.a}</div>
+              <div style="display:flex;gap:8px;margin-top:6px">
+                <button class="prep-ans-btn" onclick="togglePrepShown(${ci},${qi})">${shown?'Hide answer':'Show answer'}</button>
+                <button class="prep-ans-btn" style="color:${done?'var(--green)':'var(--muted)'}" onclick="togglePrepDone(${ci},${qi})">${done?'✓ Got it':'Mark as known'}</button>
+              </div>
+            </div>
+          </div>
+        </div>`;
+      });
+    }
+    h+=`</div>`;
+  });
+  document.getElementById('main').innerHTML=h;
+}
+
+function renderCoding(){
+  const totalEx=CODING.length;
+  const doneEx=Object.keys(S.codeDone).filter(k=>S.codeDone[k]).length;
+  let h='';
+
+  h+=`<div class="code-header">
+    <div class="dash-label">Daily Coding Mastery</div>
+    <div class="code-title">1 Hour</div>
+    <div class="code-sub">Master SOQL, Apex, and LWC through hands-on exercises · ${doneEx}/${totalEx} completed</div>
+    <div class="timer-box">
+      <div class="timer-display" id="timer-display">${formatTime(timerSeconds)}</div>
+      <div class="timer-label">Session timer — aim for 1 hour</div>
+      <div class="timer-btns">
+        <button class="timer-btn" style="background:var(--green);color:#fff" onclick="startTimer()">▶ Start</button>
+        <button class="timer-btn" style="background:var(--bg2);color:var(--text)" onclick="pauseTimer()">⏸ Pause</button>
+        <button class="timer-btn" style="background:var(--bg2);color:var(--text)" onclick="resetTimer(3600)">↺ Reset 1hr</button>
+      </div>
+    </div>
+    <div class="score-track"><div class="score-fill" style="width:${Math.round(doneEx/totalEx*100)}%;background:var(--green)"></div></div>
+    <div style="font-size:11px;color:var(--muted);margin-top:6px">${Math.round(doneEx/totalEx*100)}% complete · ${doneEx}/${totalEx} exercises done</div>
+  </div>`;
+
+  // Group by tag
+  const tags=[...new Set(CODING.map(c=>c.tag))];
+  tags.forEach(tag=>{
+    const tagEx=CODING.filter(c=>c.tag===tag);const col=tagEx[0].color;
+    const tagDone=tagEx.filter(c=>S.codeDone[c.id]).length;
+    h+=`<div class="phase-section"><div class="phase-label" style="color:${col}">● ${tag} <span style="color:var(--muted);font-weight:400">${tagDone}/${tagEx.length}</span></div>`;
+    tagEx.forEach(ex=>{
+      const open=S.codeExpanded[ex.id];const done=S.codeDone[ex.id];
+      const diffColor=ex.difficulty==='Beginner'?'#22c55e':ex.difficulty==='Intermediate'?'#f59e0b':'#f43f5e';
+      h+=`<div class="code-card">
+        <div class="code-hdr" onclick="toggleCodeExpand(${ex.id})">
+          <div class="topic-num" style="background:${col}22;color:${col}">${ex.id}</div>
+          <div class="topic-info">
+            <div class="topic-title" style="${done?'text-decoration:line-through;color:var(--muted)':''}">${ex.title}</div>
+            <div class="topic-sub">${ex.tag}</div>
+          </div>
+          <div class="diff-badge" style="background:${diffColor}22;color:${diffColor}">${ex.difficulty}</div>
+          <div class="topic-chev ${open?'open':''}">▼</div>
+        </div>`;
+      if(open){
+        h+=`<div class="code-body">
+          <div class="section-title">Description</div>
+          <p style="font-size:13px;line-height:1.6;margin-bottom:8px">${ex.description}</p>
+          <div class="section-title">Solution Code</div>
+          <div class="code-block">${ex.code}</div>
+          <div class="section-title">Your Challenge</div>
+          <div class="code-task">${ex.task}</div>
+          <div class="section-title">Key Concept</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6">${ex.explanation}</p>
+          <button class="mark-done-btn ${done?'done':''}" onclick="toggleCodeDone(${ex.id});event.stopPropagation()">${done?'✓ Exercise Complete':'Mark as Complete'}</button>
+        </div>`;
+      }
+      h+=`</div>`;
+    });
+    h+=`</div>`;
+  });
   document.getElementById('main').innerHTML=h;
 }
 
 load();render();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 </body>
 </html>
-
